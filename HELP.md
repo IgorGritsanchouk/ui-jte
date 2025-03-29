@@ -8,6 +8,13 @@ pwd: admin
 postgres  user: admin   password: password
 
 -------   SP calls to oracle db  ---------
+--- use postgress db instead of oracle ---
+spring.datasource.url=jdbc:postgresql://localhost:5432/postgres_db
+spring.datasource.username=admin
+spring.datasource.password=password
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+// It was a requirement to use postgresDB, so we switched to postgres instead of oracle
 https://www.youtube.com/watch?v=DMU-8tNaeGI
 ## connecting to oracle db
 #spring.datasource.url=jdbc:oracle:thin:@//localhost:1521/oracle-xe-cnr
