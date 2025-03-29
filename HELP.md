@@ -7,6 +7,8 @@ user:admin@admin.admin
 pwd: admin
 postgres  user: admin   password: password
 
+
+Need to add tables and data in schema29032025.XXXsql  to the database
 -------   SP calls to oracle db  ---------
 --- use postgress db instead of oracle ---
 spring.datasource.url=jdbc:postgresql://localhost:5432/postgres_db

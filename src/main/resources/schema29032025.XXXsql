@@ -1,0 +1,180 @@
+CREATE TABLE customers (
+    customer_id SERIAL PRIMARY KEY,
+    company_name VARCHAR(50) NOT NULL,
+    contact_name VARCHAR(50) NOT NULL,
+    contact_title VARCHAR(50) NOT NULL,
+    address VARCHAR(255),
+    city VARCHAR(100),
+    region VARCHAR(50),
+    postal_code VARCHAR(20),
+    country VARCHAR(50),
+    phone VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO customers (customer_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, created_at)
+VALUES
+(1, 'Tech Solutions Ltd', 'John Doe', 'CEO', '123 Business St', 'New York', 'NY', '10001', 'USA', '+1-555-9876', CURRENT_TIMESTAMP),
+(2, 'Red Mist Ltd', 'John Brown', 'DEV', '3 Market St', 'New York', 'NY', '10005', 'USA', '+1-555-9795', CURRENT_TIMESTAMP),
+(3, 'GreenTech', 'Alice Brown', 'COO', '789 Green Rd', 'San Francisco', 'CA', '94105', 'USA', '+1-555-9876', CURRENT_TIMESTAMP),
+(4, 'Blue Ocean Ltd', 'Bob White', 'CFO', '101 Ocean Dr', 'Miami', 'FL', '33101', 'USA', '+1-555-6543', CURRENT_TIMESTAMP);
+
+CREATE TABLE employees (
+    employee_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50) NOT NULL,
+    title VARCHAR(30),
+    birth_date DATE,
+    hire_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    address VARCHAR(60),
+    city VARCHAR(30),
+    region VARCHAR(30),
+    postal_code VARCHAR(30),
+    country VARCHAR(20),
+    home_phone VARCHAR(20),
+    extention VARCHAR(20),
+    photo BYTEA,  -- for binary large objects (BLOB)
+    notes VARCHAR(50),
+    salary DECIMAL(8, 2),
+    mobile_phone BIGINT,  -- change to BIGINT to handle large numbers
+    job_id VARCHAR(10) NOT NULL,
+    commission_pct DECIMAL(2, 2),
+    manager_id BIGINT,
+    department_id INTEGER,
+    CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employees(employee_id)
+);
+
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+VALUES
+(1, 'John', 'Doe', 'Manager', '1985-03-15', CURRENT_TIMESTAMP, '123 Main St', 'New York', 'NY', '10001', 'USA', '555-1234', '101', NULL, 'Excellent performance', 75000.00, 1234567890, 'MGR', 0.10, NULL, 10);
+
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+VALUES
+(2, 'Jane', 'Smith', 'Developer', '1990-07-22', CURRENT_TIMESTAMP, '456 Elm St', 'Los Angeles', 'CA', '90001', 'USA', '555-5678', '102', NULL, 'Strong technical skills', 65000.00, 9876543210, 'DEV', 0.05, 1, 20);
+
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+VALUES
+(3, 'Michael', 'Johnson', 'Sales Rep', '1988-11-10', CURRENT_TIMESTAMP, '789 Pine St', 'Chicago', 'IL', '60007', 'USA', '555-8765', '103', NULL, 'Great customer relations', 55000.00, 2345678901, 'SR', 0.08, 1, 30);
+
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+VALUES
+(4, 'Emily', 'Davis', 'Developer', '1992-01-05', CURRENT_TIMESTAMP, '101 Maple St', 'San Francisco', 'CA', '94101', 'USA', '555-2345', '104', NULL, 'Creative and innovative', 62000.00, 3456789012, 'DEV', 0.06, 2, 20);
+
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+VALUES
+(5, 'David', 'Martinez', 'HR Manager', '1982-08-18', CURRENT_TIMESTAMP, '234 Oak St', 'Miami', 'FL', '33101', 'USA', '555-3456', '105', NULL, 'Leadership in HR', 72000.00, 4567890123, 'HRM', 0.09, NULL, 40);
+
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+VALUES
+(6, 'Sara', 'Wilson', 'Sales Rep', '1994-02-28', CURRENT_TIMESTAMP, '567 Birch St', 'Houston', 'TX', '77001', 'USA', '555-4567', '106', NULL, 'Hardworking and reliable', 59000.00, 5678901234, 'SR', 0.07, 1, 30);
+
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+VALUES
+(7, 'Kevin', 'Taylor', 'Accountant', '1980-06-10', CURRENT_TIMESTAMP, '890 Cedar St', 'Dallas', 'TX', '75201', 'USA', '555-6789', '107', NULL, 'Excellent with numbers', 68000.00, 6789012345, 'ACC', 0.03, 1, 40);
+
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+VALUES
+(8, 'Anna', 'Moore', 'Manager', '1986-12-12', CURRENT_TIMESTAMP, '123 Birch St', 'Seattle', 'WA', '98001', 'USA', '555-7890', '108', NULL, 'Great team leader', 75000.00, 7890123456, 'MGR', 0.12, NULL, 10);
+
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+VALUES
+(9, 'Sophia', 'Brown', 'Marketing Specialist', '1993-04-20', CURRENT_TIMESTAMP, '321 Birch St', 'Austin', 'TX', '73301', 'USA', '555-8901', '109', NULL, 'Creative thinker', 61000.00, 8901234567, 'MKT', 0.04, 8, 50);
+
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+VALUES
+(10, 'James', 'Anderson', 'IT Support', '1995-09-25', CURRENT_TIMESTAMP, '654 Maple St', 'Boston', 'MA', '02110', 'USA', '555-1239', '110', NULL, 'Tech-savvy and dependable', 50000.00, 9012345678, 'ITS', 0.02, 1, 60);
+
+CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY,
+    customer_id BIGINT,
+    employee_id BIGINT NOT NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    required_date DATE,
+    shipped_date DATE,
+    shipped_via BIGINT,
+    shipp_name VARCHAR(40),
+    shipp_address VARCHAR(255),
+    shipp_city VARCHAR(100),
+    shipp_region VARCHAR(100),
+    shipp_postal_code VARCHAR(20),
+    shipping_country VARCHAR(30),
+    order_status VARCHAR(20),
+    total_amount DECIMAL(10, 2),
+    payment_method VARCHAR(20),
+    payment_status VARCHAR(20),
+    tracking_number VARCHAR(50),
+    CONSTRAINT fk_customer FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+    CONSTRAINT fk_employee FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
+);
+
+INSERT INTO orders (order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, shipp_name, shipp_address, shipp_city, shipp_region, shipp_postal_code, shipping_country, order_status, total_amount, payment_method, payment_status, tracking_number)
+VALUES
+(1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '7 days', CURRENT_TIMESTAMP + INTERVAL '2 days', 3, 'John Doe', '123 Elm Street', 'London', 'Greater London', 'EC1A 1BB', 'UK', 'Shipped', 250.75, 'Credit Card', 'Paid', 'TRK123456');
+
+INSERT INTO orders (order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, shipp_name, shipp_address, shipp_city, shipp_region, shipp_postal_code, shipping_country, order_status, total_amount, payment_method, payment_status, tracking_number)
+VALUES
+(2, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '10 days', NULL, 2, 'Jane Smith', '456 Oak Avenue', 'Manchester', 'North West', 'M1 2WD', 'UK', 'Processing', 150.50, 'PayPal', 'Pending', NULL);
+
+INSERT INTO orders (order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, shipp_name, shipp_address, shipp_city, shipp_region, shipp_postal_code, shipping_country, order_status, total_amount, payment_method, payment_status, tracking_number)
+VALUES
+(3, 3, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '5 days', CURRENT_TIMESTAMP + INTERVAL '1 day', 1, 'Bob Johnson', '789 Pine Road', 'Birmingham', 'West Midlands', 'B1 1AA', 'UK', 'Shipped', 320.99, 'Debit Card', 'Paid', 'TRK789012');
+
+INSERT INTO orders (order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, shipp_name, shipp_address, shipp_city, shipp_region, shipp_postal_code, shipping_country, order_status, total_amount, payment_method, payment_status, tracking_number)
+VALUES
+(4, 4, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '8 days', CURRENT_TIMESTAMP + INTERVAL '3 days', 4, 'Alice Brown', '321 Maple Lane', 'Liverpool', 'Merseyside', 'L1 4AA', 'UK', 'Delivered', 199.99, 'Bank Transfer', 'Paid', 'TRK456789');
+
+INSERT INTO orders (order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, shipp_name, shipp_address, shipp_city, shipp_region, shipp_postal_code, shipping_country, order_status, total_amount, payment_method, payment_status, tracking_number)
+VALUES
+(5, 1, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '6 days', NULL, 3, 'Michael White', '654 Birch Street', 'Bristol', 'South West', 'BS1 5TT', 'UK', 'Processing', 275.00, 'Credit Card', 'Pending', NULL);
+
+INSERT INTO orders (order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, shipp_name, shipp_address, shipp_city, shipp_region, shipp_postal_code, shipping_country, order_status, total_amount, payment_method, payment_status, tracking_number)
+VALUES
+(6, 2, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '9 days', CURRENT_TIMESTAMP + INTERVAL '2 days', 2, 'Emily Davis', '987 Cedar Drive', 'Glasgow', 'Scotland', 'G1 2HF', 'UK', 'Shipped', 410.25, 'PayPal', 'Paid', 'TRK567890');
+
+INSERT INTO orders (order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, shipp_name, shipp_address, shipp_city, shipp_region, shipp_postal_code, shipping_country, order_status, total_amount, payment_method, payment_status, tracking_number)
+VALUES
+(7, 3, 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '12 days', NULL, 1, 'David Harris', '159 Oakwood Ave', 'Edinburgh', 'Scotland', 'EH1 3BG', 'UK', 'Processing', 340.00, 'Debit Card', 'Pending', NULL);
+
+INSERT INTO orders (order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, shipp_name, shipp_address, shipp_city, shipp_region, shipp_postal_code, shipping_country, order_status, total_amount, payment_method, payment_status, tracking_number)
+VALUES
+(8, 4, 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '4 days', CURRENT_TIMESTAMP + INTERVAL '1 day', 3, 'Olivia Wilson', '753 Spruce Blvd', 'Cardiff', 'Wales', 'CF10 1DD', 'UK', 'Shipped', 180.75, 'Credit Card', 'Paid', 'TRK678901');
+
+INSERT INTO orders (order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, shipp_name, shipp_address, shipp_city, shipp_region, shipp_postal_code, shipping_country, order_status, total_amount, payment_method, payment_status, tracking_number)
+VALUES
+(9, 1, 9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '7 days', CURRENT_TIMESTAMP + INTERVAL '2 days', 4, 'Chris Evans', '852 Redwood St', 'Newcastle', 'North East', 'NE1 7RU', 'UK', 'Delivered', 500.50, 'Bank Transfer', 'Paid', 'TRK890123');
+
+INSERT INTO orders (order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, shipp_name, shipp_address, shipp_city, shipp_region, shipp_postal_code, shipping_country, order_status, total_amount, payment_method, payment_status, tracking_number)
+VALUES
+(10, 2, 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '6 days', NULL, 2, 'Sophia Carter', '357 Palm Avenue', 'Sheffield', 'Yorkshire', 'S1 2HE', 'UK', 'Processing', 290.99, 'Credit Card', 'Pending', NULL);
+
+INSERT INTO orders (order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, shipp_name, shipp_address, shipp_city, shipp_region, shipp_postal_code, shipping_country, order_status, total_amount, payment_method, payment_status, tracking_number)
+VALUES
+(11, 2, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '7 days', CURRENT_TIMESTAMP + INTERVAL '2 days', 3, 'John Doe', '123 Elm Street', 'London', 'Greater London', 'EC1A 1BB', 'UK', 'Shipped', 250.75, 'Credit Card', 'Paid', 'TRK123909');
+
+
+CREATE OR REPLACE FUNCTION get_employee_orders(empid INT)
+RETURNS TABLE(
+    employee_id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    mobile_phone BIGINT,
+    order_id INT,
+    order_date TIMESTAMP,
+    order_status VARCHAR,
+    tracking_number VARCHAR,
+    customer_id INT,
+    company_name VARCHAR,
+    phone VARCHAR
+) AS
+$$
+BEGIN
+    RETURN QUERY
+    SELECT e.employee_id, e.first_name, e.last_name, e.mobile_phone, o.order_id, o.order_date,o.order_status, o.tracking_number, c.customer_id, c.company_name, c.phone
+    FROM employees e
+    INNER JOIN orders o ON o.employee_id = e.employee_id
+    INNER JOIN customers c ON o.customer_id = c.customer_id
+    WHERE e.employee_id = empid;
+END;
+$$ LANGUAGE plpgsql;
+
+
