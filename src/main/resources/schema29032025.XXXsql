@@ -187,3 +187,22 @@ SELECT setval(pg_get_serial_sequence('employees', 'employee_id'),
        (SELECT MAX(employee_id) FROM employees));
 
 
+CREATE VIEW employee_client_order_view AS
+SELECT
+    e.employee_id,
+    e.first_name,
+    e.last_name,
+    e.salary,
+    o.order_id,
+    o.order_date,
+    o.total_amount,
+    c.customer_id,
+    c.company_name,
+    c.phone
+FROM
+    employees e
+JOIN
+    orders o ON e.employee_id = o.employee_id
+JOIN
+    customers c ON o.customer_id = c.customer_id
+
