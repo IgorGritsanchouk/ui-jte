@@ -177,6 +177,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
 SELECT setval(pg_get_serial_sequence('customers', 'customer_id'),
        (SELECT MAX(customer_id) FROM customers));
 
@@ -187,15 +188,16 @@ SELECT setval(pg_get_serial_sequence('employees', 'employee_id'),
        (SELECT MAX(employee_id) FROM employees));
 
 
-CREATE VIEW employee_client_order_view AS
+CREATE VIEW employee_customer_order_view AS
 SELECT
     e.employee_id,
     e.first_name,
     e.last_name,
-    e.salary,
+    e.mobile_phone,
     o.order_id,
     o.order_date,
-    o.total_amount,
+    o.order_status,
+	o.tracking_number,
     c.customer_id,
     c.company_name,
     c.phone
@@ -206,3 +208,5 @@ JOIN
 JOIN
     customers c ON o.customer_id = c.customer_id
 
+
+drop view employee_customer_order_view;

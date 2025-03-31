@@ -7,6 +7,7 @@
 @param com.ui.model.Customer customer
 @param com.ui.model.Order order
 @param com.ui.model.OrderForm orderForm
+@param java.util.List<com.ui.model.EmployeeCustomerOrder> ecOrdersLst
 @param InterMessage messages
 @param CurrentPage currentPage
 @param BindingResult bindingResult
@@ -36,6 +37,7 @@
                             <a href="/user-form-vm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${messages.getMessage("user_form.label")}</a>
                             <a href="/customer-form-vm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${messages.getMessage("customer.form.label")}</a>
                             <a href="/order-form-vm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${messages.getMessage("menu.order.label")}</a>
+                            <a href="/ec-order-list-vm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Order List</a>
 
                             <form action="/change-language" method="post">
                                 <select name="language" id="language" onchange="this.form.submit()">
@@ -98,7 +100,7 @@
             <a href="/order-form-vm" class="text-white flex items-center py-2 px-2 hover:bg-gray-700 rounded">
                 <span class="mr-2">🎁</span> <span x-show="open">${messages.getMessage("menu.order.label")}</span>
             </a>
-            <a href="/order-form-vm" class="text-white flex items-center py-2 px-2 hover:bg-gray-700 rounded">
+            <a href="/ec-order-list-vm" class="text-white flex items-center py-2 px-2 hover:bg-gray-700 rounded">
                 <span class="mr-2">📭</span> <span x-show="open">${messages.getMessage("menu.send.label")}</span>
             </a>
         </nav>
@@ -118,6 +120,9 @@
                 @endif
                 @if (currentPage.getJteName() == "pages-jte/order-form-vm")
                     @template.pages-jte.order-form-vm(messages= messages, orderForm= orderForm, order= order, currentPage= currentPage, bindingResult=bindingResult)
+                @endif
+                @if (currentPage.getJteName() == "pages-jte/ec-orders-vm")
+                    @template.pages-jte.ec-orders-vm(messages= messages, ecOrdersLst= ecOrdersLst, currentPage= currentPage)
                 @endif
 
             </div>
