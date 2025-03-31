@@ -12,10 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class OrderService {
@@ -52,6 +49,9 @@ public class OrderService {
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, new OrderRowMapper());
     }
 
+    public Optional<Order> findById(Long id){
+        return orderRepository.findById(id);
+    }
     public List<Order> findAll(){
         return orderRepository.findAll();
     }

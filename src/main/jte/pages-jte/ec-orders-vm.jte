@@ -39,10 +39,14 @@
         @for(var ecOrder : ecOrdersLst)
             <tr class="hover:bg-gray-50">
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${ecOrder.getEmployeeId()}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${ecOrder.getFirstName()}&nbsp;${ecOrder.getLastName()}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <a href="url">${ecOrder.getFirstName()}&nbsp;${ecOrder.getLastName()}</a>
+                </td>
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getMobilePhone()}</td>
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getOrderId()}</td>
-                <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getOrderDate().toString()}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">
+                    <a href="/order-vm?orderId=${ecOrder.getOrderId()}">${ecOrder.getOrderDate().toString()}</a>
+                </td>
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getOrderStatus()}</td>
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getTrackingNumber()}</td>
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getCustomerId()}</td>
