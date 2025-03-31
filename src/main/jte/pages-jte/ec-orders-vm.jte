@@ -15,10 +15,11 @@
 
 <body class="bg-gray-50">
 <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-    <h2 class="text-base font-semibold leading-7 text-gray-900">${currentPage.getTitle()}</h2>
-    <p class="mt-1 text-sm leading-6 text-gray-500">${messages.getMessage("fields.required.message")}</p>
+    <h2 class="text-base font-semibold leading-7 text-gray-900">&nbsp;&nbsp;${currentPage.getTitle()}</h2>
+    <p class="mt-1 text-sm leading-6 text-gray-500">&nbsp;&nbsp;To modify order, customer or employee click relevant link</p>
+    <p class="mt-1 text-sm leading-6 text-gray-500">&nbsp;</p>
 
-<div class="bg-white shadow-sm rounded-lg overflow-hidden">
+<div class="bg-white shadow-sm rounded-lg overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
         <tr>
@@ -27,6 +28,11 @@
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Emp Phone</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order Id</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order Date</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tracking Num</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer Id</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company Name</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer Phone</th>
         </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
@@ -37,6 +43,11 @@
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getMobilePhone()}</td>
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getOrderId()}</td>
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getOrderDate().toString()}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getOrderStatus()}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getTrackingNumber()}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getCustomerId()}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getCompanyName()}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getPhone()}</td>
   <!--
                 <td class="px-6 py-4 whitespace-nowrap text-sm">
                     if()

@@ -107,7 +107,8 @@
 
         <!-- Master-vm content -->
         <master-vm>
-            <div class="bg-white shadow rounded-lg p-6">
+<!--            <div class="bg-white shadow rounded-lg p-6">   -->
+            <div class="bg-white shadow-sm rounded-lg overflow-hidden">
 
                 @if (currentPage.getJteName() == "pages-jte/home-vm")
                     @template.pages-jte.home-vm(currentPage= currentPage, messages= messages)
