@@ -45,7 +45,7 @@
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getMobilePhone()}</td>
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getOrderId()}</td>
                 <td class="px-6 py-4 text-sm text-gray-500">
-                    <a href="/order-vm?orderId=${ecOrder.getOrderId()}">${ecOrder.getOrderDate().toString()}</a>
+                    <a href="/order-vm?orderId=${ecOrder.getOrderId()}" class="text-blue-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${ecOrder.getOrderDate().toString()}</a>
                 </td>
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getOrderStatus()}</td>
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getTrackingNumber()}</td>
