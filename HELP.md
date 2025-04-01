@@ -121,6 +121,11 @@ gg.jte.use-precompiled-templates=true
 instead.
 For more details, please take a look at [the official documentation](https://jte.gg/spring-boot-starter-3/).
 
+### Git related
+PS C:\APP_DEV\ui-jte> git add .
+PS C:\APP_DEV\ui-jte> git commit -m "added translations to orders page"
+PS C:\APP_DEV\ui-jte> git push origin main
+
 ### Maven Parent overrides
 
 Due to Maven's design, elements are inherited from the parent POM to the project POM.

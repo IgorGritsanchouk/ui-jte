@@ -5,7 +5,7 @@ import com.ui.model.CurrentPage;
 import org.springframework.validation.BindingResult;
 public final class JtemastervmGenerated {
 	public static final String JTE_NAME = "layout/master-vm.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,4,4,4,20,20,25,35,35,35,36,36,36,37,37,37,38,38,38,43,43,43,43,43,44,44,44,44,44,45,45,45,45,45,46,46,46,46,46,47,47,47,47,47,64,65,71,73,74,76,76,76,80,82,82,82,85,85,85,88,88,88,91,91,91,94,94,94,97,97,97,100,100,100,103,103,103,107,109,112,112,113,113,114,114,115,115,116,116,117,117,118,118,119,119,120,120,121,121,122,122,123,123,124,124,125,125,126,126,139,139,139,4,5,6,7,8,9,10,11,12,12,12,12};
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,4,4,4,20,20,25,35,35,35,36,36,36,37,37,37,38,38,38,39,39,39,43,43,43,43,43,44,44,44,44,44,45,45,45,45,45,46,46,46,46,46,47,47,47,47,47,64,65,71,73,74,76,76,76,80,82,82,82,85,85,85,88,88,88,91,91,91,94,94,94,97,97,97,100,100,100,103,103,103,107,109,112,112,113,113,114,114,115,115,116,116,117,117,118,118,119,119,120,120,121,121,122,122,123,123,124,124,125,125,126,126,139,139,139,4,5,6,7,8,9,10,11,12,12,12,12};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, java.util.Map<String, String> countries, com.ui.model.User user, com.ui.model.Customer customer, com.ui.model.Order order, com.ui.model.OrderForm orderForm, java.util.List<com.ui.model.EmployeeCustomerOrder> ecOrdersLst, InterMessage messages, CurrentPage currentPage, BindingResult bindingResult) {
 		jteOutput.writeContent("\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>My Spring Boot App</title>\r\n    ");
 		jteOutput.writeContent("\r\n    <link href=\"main.css\" rel=\"stylesheet\" />\r\n</head>\r\n<body class=\"bg-gray-100\">\r\n<div class=\"min-h-full\">\r\n    ");
@@ -21,7 +21,10 @@ public final class JtemastervmGenerated {
 		jteOutput.writeContent("</a>\r\n                            <a href=\"/order-form-vm\" class=\"text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium\">");
 		jteOutput.setContext("a", null);
 		jteOutput.writeUserContent(messages.getMessage("menu.order.label"));
-		jteOutput.writeContent("</a>\r\n                            <a href=\"/ec-orders-vm\" class=\"text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium\">Order List</a>\r\n\r\n                            <form action=\"/change-language\" method=\"post\">\r\n                                <select name=\"language\" id=\"language\" onchange=\"this.form.submit()\">\r\n                                    <option value=\"en\"");
+		jteOutput.writeContent("</a>\r\n                            <a href=\"/ec-orders-vm\" class=\"text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium\">");
+		jteOutput.setContext("a", null);
+		jteOutput.writeUserContent(messages.getMessage("menu.orders.label"));
+		jteOutput.writeContent("</a>\r\n\r\n                            <form action=\"/change-language\" method=\"post\">\r\n                                <select name=\"language\" id=\"language\" onchange=\"this.form.submit()\">\r\n                                    <option value=\"en\"");
 		var __jte_html_attribute_0 = currentPage.isSelected(FINAL.LANGUAGE_EN);
 		if (__jte_html_attribute_0) {
 		jteOutput.writeContent(" selected");
@@ -78,7 +81,7 @@ public final class JtemastervmGenerated {
 		jteOutput.writeUserContent(messages.getMessage("menu.order.label"));
 		jteOutput.writeContent("</span>\r\n            </a>\r\n            <a href=\"/ec-orders-vm\" class=\"text-white flex items-center py-2 px-2 hover:bg-gray-700 rounded\">\r\n                <span class=\"mr-2\">📭</span> <span x-show=\"open\">");
 		jteOutput.setContext("span", null);
-		jteOutput.writeUserContent(messages.getMessage("menu.send.label"));
+		jteOutput.writeUserContent(messages.getMessage("menu.orders.label"));
 		jteOutput.writeContent("</span>\r\n            </a>\r\n        </nav>\r\n\r\n        ");
 		jteOutput.writeContent("\r\n        <master-vm>\r\n");
 		jteOutput.writeContent("\r\n            <div class=\"bg-white shadow-sm rounded-lg overflow-hidden\">\r\n\r\n                ");
