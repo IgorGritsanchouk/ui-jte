@@ -21,7 +21,7 @@ public final class JtemastervmGenerated {
 		jteOutput.writeContent("</a>\r\n                            <a href=\"/order-form-vm\" class=\"text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium\">");
 		jteOutput.setContext("a", null);
 		jteOutput.writeUserContent(messages.getMessage("menu.order.label"));
-		jteOutput.writeContent("</a>\r\n                            <a href=\"/ec-order-list-vm\" class=\"text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium\">Order List</a>\r\n\r\n                            <form action=\"/change-language\" method=\"post\">\r\n                                <select name=\"language\" id=\"language\" onchange=\"this.form.submit()\">\r\n                                    <option value=\"en\"");
+		jteOutput.writeContent("</a>\r\n                            <a href=\"/ec-orders-vm\" class=\"text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium\">Order List</a>\r\n\r\n                            <form action=\"/change-language\" method=\"post\">\r\n                                <select name=\"language\" id=\"language\" onchange=\"this.form.submit()\">\r\n                                    <option value=\"en\"");
 		var __jte_html_attribute_0 = currentPage.isSelected(FINAL.LANGUAGE_EN);
 		if (__jte_html_attribute_0) {
 		jteOutput.writeContent(" selected");
@@ -76,7 +76,7 @@ public final class JtemastervmGenerated {
 		jteOutput.writeContent("</span>\r\n            </a>\r\n            <a href=\"/order-form-vm\" class=\"text-white flex items-center py-2 px-2 hover:bg-gray-700 rounded\">\r\n                <span class=\"mr-2\">🎁</span> <span x-show=\"open\">");
 		jteOutput.setContext("span", null);
 		jteOutput.writeUserContent(messages.getMessage("menu.order.label"));
-		jteOutput.writeContent("</span>\r\n            </a>\r\n            <a href=\"/ec-order-list-vm\" class=\"text-white flex items-center py-2 px-2 hover:bg-gray-700 rounded\">\r\n                <span class=\"mr-2\">📭</span> <span x-show=\"open\">");
+		jteOutput.writeContent("</span>\r\n            </a>\r\n            <a href=\"/ec-orders-vm\" class=\"text-white flex items-center py-2 px-2 hover:bg-gray-700 rounded\">\r\n                <span class=\"mr-2\">📭</span> <span x-show=\"open\">");
 		jteOutput.setContext("span", null);
 		jteOutput.writeUserContent(messages.getMessage("menu.send.label"));
 		jteOutput.writeContent("</span>\r\n            </a>\r\n        </nav>\r\n\r\n        ");

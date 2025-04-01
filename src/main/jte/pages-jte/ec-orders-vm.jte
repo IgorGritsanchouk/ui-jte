@@ -15,8 +15,8 @@
 
 <body class="bg-gray-50">
 <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-    <h2 class="text-base font-semibold leading-7 text-gray-900">&nbsp;&nbsp;${currentPage.getTitle()}</h2>
-    <p class="mt-1 text-sm leading-6 text-gray-500">&nbsp;&nbsp;To modify order, customer or employee click relevant link</p>
+    <h2 class="text-base font-semibold leading-7 text-gray-900">&nbsp;&nbsp;${messages.getMessage("orders.title.label")}</h2>
+    <p class="mt-1 text-sm leading-6 text-gray-500">&nbsp;&nbsp;${messages.getMessage("orders.info.label")}</p>
     <p class="mt-1 text-sm leading-6 text-gray-500">&nbsp;</p>
 
 <div class="bg-white shadow-sm rounded-lg overflow-x-auto">

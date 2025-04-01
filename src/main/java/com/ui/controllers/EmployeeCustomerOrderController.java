@@ -40,7 +40,7 @@ public class EmployeeCustomerOrderController extends ParentController{
     private final CountryService countryService;
     private final EmployeeCustomerOrderService employeeCustomerOrderService;
 
-    @GetMapping("/ec-order-list-vm")
+    @GetMapping("/ec-orders-vm")
     public String getOrderList(HttpServletRequest request, Model model){
 
         String lang= (String)request.getSession().getAttribute(FINAL.LANGUAGE);
