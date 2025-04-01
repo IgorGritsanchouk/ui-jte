@@ -20,7 +20,6 @@ public class EmployeeCustomerOrderService {
     }
 
     public List<EmployeeCustomerOrder> findAll(){
-
        return this.employeeCustomerOrderRepository.findAll();
     }
 

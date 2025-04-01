@@ -29,14 +29,17 @@ public class EmployeeCustomerOrderController extends ParentController{
     public EmployeeCustomerOrderController(MessageSource messageSource,
                                            EmployeeCustomerOrderService ecos,
                                            CountryService countryService,
-                                           OrderService orderService){
+                                           OrderService orderService,
+                                           CustomerService customerService){
         super(messageSource);
         this.employeeCustomerOrderService= ecos;
         this.orderService= orderService;
         this.countryService= countryService;
+        this.customerService= customerService;
     }
     private InterMessage interMessage;
     private final OrderService orderService;
+    private final CustomerService customerService;
     private final CountryService countryService;
     private final EmployeeCustomerOrderService employeeCustomerOrderService;
 
@@ -59,7 +62,7 @@ public class EmployeeCustomerOrderController extends ParentController{
         return "layout/master-vm";
     }
 
-    @GetMapping("order-vm")
+    @GetMapping("find-order-vm")
     public String getOrderForId(@RequestParam long orderId, HttpServletRequest request, Model model) {
         String lang= (String)request.getSession().getAttribute(FINAL.LANGUAGE);
         CurrentPage currentPage= new CurrentPage("Order Form", "pages-jte/order-form-vm", lang);
@@ -89,25 +92,28 @@ public class EmployeeCustomerOrderController extends ParentController{
         return "layout/master-vm";
     }
 
+    @GetMapping("find-customer-vm")
+    public String getCustomerForId(@RequestParam long customerId, HttpServletRequest request, Model model) {
 
+        String lang= (String)request.getSession().getAttribute(FINAL.LANGUAGE);
+        CurrentPage currentPage= new CurrentPage("Customer Form", "pages-jte/customer-form-vm", lang);
+        request.getSession().setAttribute(FINAL.CURRENT_PAGE, currentPage);
 
-//    @GetMapping("/sp-orders-vm")
-//    public String getOrderStoredProcedure(HttpServletRequest request, Model model){
-//
-//        String lang= (String)request.getSession().getAttribute(FINAL.LANGUAGE);
-//        CurrentPage currentPage= new CurrentPage("Order List", "pages-jte/ec-orders-vm", lang);
-//        request.getSession().setAttribute(FINAL.CURRENT_PAGE, currentPage);
-//
-//        List<EmployeeCustomerOrder> ecOrdersLst= this.employeeCustomerOrderService.findAll();
-//        model.addAttribute(FINAL.CURRENT_PAGE, currentPage);
-//        model.addAttribute("ecOrdersLst", ecOrdersLst);
-//
-//        Locale locale= getLocale(request);
-//        interMessage= new InterMessage(messageSource, locale);
-//        model.addAttribute("interMessage", interMessage);
-//
-//        logger.info("Lang: "+ lang + "  Jte Page Name: "+ currentPage.getJteName());
-//        return "layout/master-vm";
-//    }
+        Map<String, String> countries = countryService.getAllCountries();
+        model.addAttribute("countries", countries);
+
+        model.addAttribute(FINAL.CURRENT_PAGE, currentPage);
+        Optional<Customer> optional=customerService.findForId(customerId);
+        model.addAttribute("customer", optional.get());
+
+        Locale locale= getLocale(request);
+        interMessage= new InterMessage(messageSource, locale);
+        model.addAttribute("interMessage", interMessage);
+
+        logger.info("Lang: "+ lang + "  Jte Page Name: "+ currentPage.getJteName());
+        return "layout/master-vm";
+
+    }
+
 
 }

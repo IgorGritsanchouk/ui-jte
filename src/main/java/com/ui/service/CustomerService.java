@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.ui.model.Customer;
 import java.sql.*;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -19,8 +21,17 @@ public class CustomerService {
         this.jdbcTemplate= jdbcTemplate;
         this.customerRepository= customerRepository;
     }
-    //@Autowired
+
     private JdbcTemplate jdbcTemplate;
+
+    public Optional<Customer> findForId(Long id){
+        logger.info("Find Customer for id: "+ id);
+        return customerRepository.findById(id);
+    }
+
+    public List<Customer> findAll(){
+        return customerRepository.findAll();
+    }
 
     public void save(Customer customer){
         Customer result= this.customerRepository.save(customer);

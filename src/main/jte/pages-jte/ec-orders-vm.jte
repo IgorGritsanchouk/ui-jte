@@ -35,18 +35,20 @@
         <tbody class="bg-white divide-y divide-gray-200">
         @for(var ecOrder : ecOrdersLst)
             <tr class="hover:bg-gray-50">
-                <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getCompanyName()}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">
+                    <a href="/find-customer-vm?customerId=${ecOrder.getCustomerId()}" class="text-blue-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${ecOrder.getCompanyName()}</a>
+                </td>
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getPhone()}</td>
 
                 <td class="px-6 py-4 text-sm text-gray-500">
-                    <a href="/order-vm?orderId=${ecOrder.getOrderId()}" class="text-blue-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${ecOrder.getOrderDate().toString()}</a>
+                    <a href="/find-order-vm?orderId=${ecOrder.getOrderId()}" class="text-blue-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${ecOrder.getOrderDate().toString()}</a>
                 </td>
 
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getOrderStatus()}</td>
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getTrackingNumber()}</td>
 
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    <a href="url">${ecOrder.getFirstName()}&nbsp;${ecOrder.getLastName()}</a>
+                    <a href="/find-employee-vm?employeeId=${ecOrder.getEmployeeId()}" class="text-blue-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${ecOrder.getFirstName()}&nbsp;${ecOrder.getLastName()}</a>
                 </td>
                 <td class="px-6 py-4 text-sm text-gray-500">${ecOrder.getMobilePhone()}</td>
 
