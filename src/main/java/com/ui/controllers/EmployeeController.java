@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Locale;
 import java.util.Map;
 @Controller
@@ -47,11 +48,18 @@ public class EmployeeController extends ParentController{
         CurrentPage currentPage= new CurrentPage("Employee Form", "pages-jte/employee-form-vm", lang);
         request.getSession().setAttribute(FINAL.CURRENT_PAGE, currentPage);
 
-        Map<String, String> countries = countryService.getAllCountries();
-        model.addAttribute("countries", countries);
+        EmployeeForm employeeForm= new EmployeeForm();
+        employeeForm.setCountries(countryService.getAllCountries());
+
+        //Map<String, String> countries = countryService.getAllCountries();
+        model.addAttribute("employeeForm", employeeForm);
+
+        Employee employee= new Employee();
+        employee.setBirthDate(new Date(System.currentTimeMillis()));
+        employee.setHireDate(new Timestamp(System.currentTimeMillis()));
 
         model.addAttribute(FINAL.CURRENT_PAGE, currentPage);
-        model.addAttribute("employee", new Employee());
+        model.addAttribute("employee", employee);
 
         Locale locale= getLocale(request);
         interMessage= new InterMessage(messageSource, locale);

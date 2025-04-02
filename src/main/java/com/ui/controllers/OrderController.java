@@ -49,8 +49,8 @@ public class OrderController extends ParentController {
         CurrentPage currentPage= new CurrentPage("Order Form", "pages-jte/order-form-vm", lang);
         request.getSession().setAttribute(FINAL.CURRENT_PAGE, currentPage);
 
-        Map<String, String> countries = countryService.getAllCountries();
-        model.addAttribute("countries", countries);
+        //Map<String, String> countries = countryService.getAllCountries();
+        //model.addAttribute("countries", countries);
 
         Order order= new Order();
         order.setRequiredDate(new Date(System.currentTimeMillis()));

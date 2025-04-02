@@ -18,12 +18,6 @@ import java.util.Objects;
 @Table("employees")
 public class Employee {
 
-//    private Integer EmployeeId;
-//    private Float salary;
-//    private Integer orderId;
-//    private Date orderDate;
-//    private String shipName;
-
     @Id
     private Long employeeId;
 
@@ -36,8 +30,12 @@ public class Employee {
     private String lastName;
 
     private String title;
+
+    @NotBlank(message = "Birth date is required.")
     private Date birthDate;
+    @NotBlank(message = "Hire date is required.")
     private Timestamp hireDate;
+
     private String address;
     private String city;
     private String region;
@@ -53,6 +51,10 @@ public class Employee {
     private BigDecimal commissionPct;
     private Integer managerId;
     private Integer departmentId;
+
+    public Date convertTimestampToDate(Timestamp timestamp){
+        return new Date(timestamp.getTime());
+    }
 
     @Override
     public boolean equals(Object o) {

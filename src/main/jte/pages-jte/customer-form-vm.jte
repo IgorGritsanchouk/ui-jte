@@ -23,6 +23,7 @@
 <body class="bg-gray-100 p-6">
 
 <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+
     <form class="p-6" action="/save-customer-vm" method="post">
         <div class="border-b border-gray-900/10 pb-12">
             <h2 class="text-base font-semibold leading-7 text-gray-900">${messages.getMessage("personal.ifo.label")}</h2>
