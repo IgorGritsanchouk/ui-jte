@@ -6,11 +6,7 @@ import lombok.NoArgsConstructor;
 import java.util.Map;
 @NoArgsConstructor
 @Data
-public class OrderForm {
+public class EmployeeForm {
 
-    //private Order order;
     private Map<String, String> countries;
-    private Map<Long, String> employeeDropDown;
-    private Map<Long, String> customerDropDown;
-
 }

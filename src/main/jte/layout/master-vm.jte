@@ -1,15 +1,15 @@
 @import com.ui.util.FINAL
-@import com.ui.util.InterMessage
-@import com.ui.model.CurrentPage
 @import org.springframework.validation.BindingResult
 @param java.util.Map<String, String> countries
 @param com.ui.model.User user
 @param com.ui.model.Customer customer
 @param com.ui.model.Order order
 @param com.ui.model.OrderForm orderForm
+@param com.ui.model.Employee employee
+@param com.ui.model.EmployeeForm employeeForm
 @param java.util.List<com.ui.model.EmployeeCustomerOrder> ecOrdersLst
-@param InterMessage messages
-@param CurrentPage currentPage
+@param com.ui.util.InterMessage messages
+@param com.ui.model.CurrentPage currentPage
 @param BindingResult bindingResult
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <a href="/home-vm" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">${messages.getMessage("dashboard.label")}</a>
-                            <a href="/user-form-vm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${messages.getMessage("user_form.label")}</a>
+                            <a href="/employee-form-vm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${messages.getMessage("employee.form.label")}</a>
                             <a href="/customer-form-vm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${messages.getMessage("customer.form.label")}</a>
                             <a href="/order-form-vm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${messages.getMessage("menu.order.label")}</a>
                             <a href="/ec-orders-vm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${messages.getMessage("menu.orders.label")}</a>
@@ -91,8 +91,8 @@
             <a href="#" class="text-white flex items-center py-2 px-2 hover:bg-gray-700 rounded">
                 <span class="mr-2">📞</span> <span x-show="open">${messages.getMessage("contact.label")}</span>
             </a>
-            <a href="/user-form-vm" class="text-white flex items-center py-2 px-2 hover:bg-gray-700 rounded">
-                <span class="mr-2">😊</span> <span x-show="open">${messages.getMessage("user_form.label")}</span>
+            <a href="/employee-form-vm" class="text-white flex items-center py-2 px-2 hover:bg-gray-700 rounded">
+                <span class="mr-2">😊</span> <span x-show="open">${messages.getMessage("employee.form.label")}</span>
             </a>
             <a href="/customer-form-vm" class="text-white flex items-center py-2 px-2 hover:bg-gray-700 rounded">
                 <span class="mr-2">👨‍💻</span> <span x-show="open">${messages.getMessage("customer.form.label")}</span>
@@ -113,8 +113,8 @@
                 @if (currentPage.getJteName() == "pages-jte/home-vm")
                     @template.pages-jte.home-vm(currentPage= currentPage, messages= messages)
                 @endif
-                @if (currentPage.getJteName() == "pages-jte/user-form-vm")
-                    @template.pages-jte.user-form-vm(messages= messages, user= user, currentPage= currentPage)
+                @if (currentPage.getJteName() == "pages-jte/employee-form-vm")
+                    @template.pages-jte.employee-form-vm(messages= messages, employeeForm= employeeForm, employee= employee, currentPage= currentPage, bindingResult=bindingResult)
                 @endif
                 @if (currentPage.getJteName() == "pages-jte/customer-form-vm")
                     @template.pages-jte.customer-form-vm(messages= messages, customer= customer, countries= countries, currentPage= currentPage, bindingResult=bindingResult)
