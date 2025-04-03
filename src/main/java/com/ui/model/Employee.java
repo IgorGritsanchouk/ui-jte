@@ -6,6 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.FutureOrPresent;
 
 import java.lang.Long;
 import java.sql.Date;
@@ -31,9 +36,9 @@ public class Employee {
 
     private String title;
 
-    @NotBlank(message = "Birth date is required.")
+    @Past(message = "Birth date must be in the past")
     private Date birthDate;
-    @NotBlank(message = "Hire date is required.")
+
     private Timestamp hireDate;
 
     private String address;
@@ -51,6 +56,13 @@ public class Employee {
     private BigDecimal commissionPct;
     private Integer managerId;
     private Integer departmentId;
+
+    public void setHireDate(Date hireDate){
+        this.hireDate= (hireDate != null) ? new Timestamp(hireDate.getTime()) : new Timestamp(System.currentTimeMillis());
+    }
+    public Timestamp getHireDate(){
+        return (hireDate != null) ? hireDate : new Timestamp(System.currentTimeMillis());
+    }
 
     public Date convertTimestampToDate(Timestamp timestamp){
         return new Date(timestamp.getTime());

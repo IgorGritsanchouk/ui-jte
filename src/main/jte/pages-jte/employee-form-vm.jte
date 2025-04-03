@@ -106,54 +106,20 @@
                     <div class="mt-2">
                         <input type="date" placeholder="Select Date" name="hireDate" id="hireDate" value="${employee.convertTimestampToDate(employee.getHireDate()).toString()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
-                    @if(bindingResult!=null && bindingResult.hasFieldErrors("hireDate"))
-                        <div style="color: red; font-size: 10px;">
-                            ${messages.getMessage(bindingResult.getFieldError("hireDate").getDefaultMessage())}
-                        </div>
-                    @endif
                 </div>
 
                 <div class="col-span-full">
-                    <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Address</label>
+                    <label for="address" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("street.address.label")}</label>
                     <div class="mt-2">
                         <input type="text" name="address" id="streetAddress" value="${employee.getAddress()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
-                <div class="sm:col-span-2 sm:col-start-1">
-                    <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
-                    <div class="mt-2">
-                        <input type="text" name="city" id="city" value="${employee.getCity()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-
-                <div class="sm:col-span-2">
-                    <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Region</label>
-                    <div class="mt-2">
-                        <select id="region" name="region" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                            <option value="">Select a county</option>
-                            <option value="BERK" selected="${employee.getRegion() != null && employee.getRegion().equals("BERK")}">Berkshire</option>
-                            <option value="HERT" selected="${employee.getRegion() != null && employee.getRegion().equals("HERT")}">Hertfordshire</option>
-                            <option value="OXFD" selected="${employee.getRegion() != null && employee.getRegion().equals("OXFD")}">Oxfordshire</option>
-                            <!-- Add more states as needed -->
-                        </select>
-                    </div>
-                </div>
-
-                <div class="sm:col-span-2">
-                    <label for="postalCode" class="block text-sm font-medium leading-6 text-gray-900">Postal code</label>
-                    <div class="mt-2">
-                        <input type="text" name="postalCode" id="postalCode" value="${employee.getPostalCode()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-
-
                 <div class="sm:col-span-3">
-                    <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country<span class="text-red-500">*</span></label>
+                    <label for="country" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("country.label")}<span class="text-red-500">*</span></label>
                     <div class="mt-2">
                         <select id="country" name="country" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select a country</option>
-                            <!-- Loop through the map of countries -->
                             @for (Map.Entry<String, String> entry : employeeForm.getCountries().entrySet())
                                 <option value="${entry.getKey()}" selected="${employee.getCountry() != null && employee.getCountry().equals(entry.getKey())}">
                                     ${entry.getValue()}
@@ -170,6 +136,34 @@
                 </div>
 
 
+                <div class="sm:col-span-2 sm:col-start-1">
+                    <label for="city" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("city.label")}</label>
+                    <div class="mt-2">
+                        <input type="text" name="city" id="city" value="${employee.getCity()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="region" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("state.province.label")}</label>
+                    <div class="mt-2">
+                        <select id="region" name="region" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <option value="">Select a county</option>
+                            @for (Map.Entry<String, String> entry : employeeForm.getRegions().entrySet())
+                                <option value="${entry.getKey()}" selected="${employee.getRegion() != null && employee.getRegion().equals(entry.getKey())}">
+                                    ${entry.getValue()}
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="postalCode" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("postal.code.label")}</label>
+                    <div class="mt-2">
+                        <input type="text" name="postalCode" id="postalCode" value="${employee.getPostalCode()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -178,6 +172,7 @@
             <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">${messages.getMessage("save.label")}</button>
         </div>
     </form>
+
 </div>
 </body>
 </html>

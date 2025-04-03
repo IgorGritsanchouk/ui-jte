@@ -54,7 +54,7 @@ public class EmployeeController extends ParentController{
 
         Employee employee= new Employee();
         employee.setBirthDate(new Date(System.currentTimeMillis()));
-        employee.setHireDate(new Timestamp(System.currentTimeMillis()));
+        employee.setHireDate(new Date(System.currentTimeMillis()));
 
         model.addAttribute(FINAL.CURRENT_PAGE, currentPage);
         model.addAttribute("employee", employee);
@@ -70,14 +70,18 @@ public class EmployeeController extends ParentController{
     @PostMapping("/save-employee-vm")
     public String saveEmployeeVm(HttpServletRequest request, @Valid  @ModelAttribute("employee") Employee employee, BindingResult bindingResult, Model model){
 
+        EmployeeForm employeeForm= new EmployeeForm();
+        employeeForm.setCountries(formService.getAllCountries());
+        employeeForm.setRegions(formService.getAllRegions());
+        employeeForm.setTitles(formService.getAllTitles());
         CurrentPage currentPage=(CurrentPage)request.getSession().getAttribute(FINAL.CURRENT_PAGE);
+
         if (bindingResult.hasErrors()) {
             currentPage.setError("Validation errors. Please enter required fields.");
             currentPage.setMessage(null);
             model.addAttribute("currentPage", currentPage);
             model.addAttribute("bindingResult", bindingResult);
-            Map<String, String> countries = formService.getAllCountries();
-            model.addAttribute("countries", countries);
+            model.addAttribute("employeeForm", employeeForm);
             logger.error("Validation errors num: employee-form-vm "+ bindingResult.getErrorCount());
             return "layout/master-vm";  // Return to the form with validation errors
         }
