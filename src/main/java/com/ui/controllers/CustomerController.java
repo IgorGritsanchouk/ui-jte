@@ -1,6 +1,6 @@
 package com.ui.controllers;
 
-import com.ui.service.CountryService;
+import com.ui.service.FormService;
 import com.ui.service.CustomerService;
 import com.ui.util.FINAL;
 import com.ui.util.InterMessage;
@@ -14,8 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,15 +25,15 @@ public class CustomerController extends ParentController{
     private static final Logger logger= LoggerFactory.getLogger(CustomerController.class);
 
     public CustomerController(CustomerService customerService,
-                              CountryService countryService,
+                              FormService formService,
                               MessageSource messageSource){
         super(messageSource);
         this.customerService= customerService;
-        this.countryService= countryService;
+        this.formService= formService;
     }
     private InterMessage interMessage;
     private final CustomerService customerService;
-    private final CountryService countryService;
+    private final FormService formService;
 
     @GetMapping("/customer-form-vm")
     public String getCustomerForm(HttpServletRequest request, Model model){
@@ -43,7 +41,7 @@ public class CustomerController extends ParentController{
         CurrentPage currentPage= new CurrentPage("Customer Form", "pages-jte/customer-form-vm", lang);
         request.getSession().setAttribute(FINAL.CURRENT_PAGE, currentPage);
 
-        Map<String, String> countries = countryService.getAllCountries();
+        Map<String, String> countries = formService.getAllCountries();
         model.addAttribute("countries", countries);
 
         model.addAttribute(FINAL.CURRENT_PAGE, currentPage);
@@ -66,7 +64,7 @@ public class CustomerController extends ParentController{
             currentPage.setMessage(null);
             model.addAttribute("currentPage", currentPage);
             model.addAttribute("bindingResult", bindingResult);
-            Map<String, String> countries = countryService.getAllCountries();
+            Map<String, String> countries = formService.getAllCountries();
             model.addAttribute("countries", countries);
             logger.error("Validation errors num: customer-form-vm "+ bindingResult.getErrorCount());
             return "layout/master-vm";  // Return to the form with validation errors

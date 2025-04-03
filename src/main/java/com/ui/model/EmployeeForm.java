@@ -9,4 +9,6 @@ import java.util.Map;
 public class EmployeeForm {
 
     private Map<String, String> countries;
+    private Map<String, String> titles;
+    private Map<String,String> regions;
 }

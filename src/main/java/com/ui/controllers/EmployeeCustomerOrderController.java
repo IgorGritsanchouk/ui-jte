@@ -1,7 +1,7 @@
 package com.ui.controllers;
 
 import com.ui.model.*;
-import com.ui.service.CountryService;
+import com.ui.service.FormService;
 import com.ui.service.CustomerService;
 import com.ui.service.EmployeeCustomerOrderService;
 import com.ui.service.OrderService;
@@ -16,8 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.math.BigDecimal;
-import java.sql.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -28,19 +26,19 @@ public class EmployeeCustomerOrderController extends ParentController{
     private final Logger logger = LoggerFactory.getLogger(EmployeeCustomerOrderController.class);
     public EmployeeCustomerOrderController(MessageSource messageSource,
                                            EmployeeCustomerOrderService ecos,
-                                           CountryService countryService,
+                                           FormService formService,
                                            OrderService orderService,
                                            CustomerService customerService){
         super(messageSource);
         this.employeeCustomerOrderService= ecos;
         this.orderService= orderService;
-        this.countryService= countryService;
+        this.formService= formService;
         this.customerService= customerService;
     }
     private InterMessage interMessage;
     private final OrderService orderService;
     private final CustomerService customerService;
-    private final CountryService countryService;
+    private final FormService formService;
     private final EmployeeCustomerOrderService employeeCustomerOrderService;
 
     @GetMapping("/ec-orders-vm")
@@ -68,7 +66,7 @@ public class EmployeeCustomerOrderController extends ParentController{
         CurrentPage currentPage= new CurrentPage("Order Form", "pages-jte/order-form-vm", lang);
         request.getSession().setAttribute(FINAL.CURRENT_PAGE, currentPage);
 
-        Map<String, String> countries = countryService.getAllCountries();
+        Map<String, String> countries = formService.getAllCountries();
         model.addAttribute("countries", countries);
 
         //Order order= this.orderService.findByOrderId(orderId);
@@ -76,7 +74,7 @@ public class EmployeeCustomerOrderController extends ParentController{
         Order order= optional.get();
 
         OrderForm orderForm= new OrderForm();
-        orderForm.setCountries(countryService.getAllCountries());
+        orderForm.setCountries(formService.getAllCountries());
         orderForm.setCustomerDropDown(orderService.getCustomerDropDown());
         orderForm.setEmployeeDropDown(orderService.getEmployeeDropDown());
 
@@ -99,7 +97,7 @@ public class EmployeeCustomerOrderController extends ParentController{
         CurrentPage currentPage= new CurrentPage("Customer Form", "pages-jte/customer-form-vm", lang);
         request.getSession().setAttribute(FINAL.CURRENT_PAGE, currentPage);
 
-        Map<String, String> countries = countryService.getAllCountries();
+        Map<String, String> countries = formService.getAllCountries();
         model.addAttribute("countries", countries);
 
         model.addAttribute(FINAL.CURRENT_PAGE, currentPage);

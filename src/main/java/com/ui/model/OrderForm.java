@@ -8,7 +8,6 @@ import java.util.Map;
 @Data
 public class OrderForm {
 
-    //private Order order;
     private Map<String, String> countries;
     private Map<Long, String> employeeDropDown;
     private Map<Long, String> customerDropDown;

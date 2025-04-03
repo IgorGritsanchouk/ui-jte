@@ -75,16 +75,16 @@
                     @endif
                 </div>
 
-
                 <div class="sm:col-span-2">
                     <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
                     <div class="mt-2">
-                        <select id="title" name="contactTitle" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                        <select id="title" name="title" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select title</option>
-                            <option value="Mr" selected="${employee.getTitle() != null && employee.getTitle().equals("Mr")}">Mr</option>
-                            <option value="Mrs" selected="${employee.getTitle() != null && employee.getTitle().equals("Mrs")}">Mrs</option>
-                            <option value="Miss" selected="${employee.getTitle() != null && employee.getTitle().equals("Miss")}">Miss</option>
-                            <!-- Add more states as needed -->
+                            @for (Map.Entry<String, String> entry : employeeForm.getTitles().entrySet())
+                                <option value="${entry.getKey()}" selected="${employee.getTitle() != null && employee.getTitle().equals(entry.getKey())}">
+                                    ${entry.getValue()}
+                                </option>
+                            @endfor
                         </select>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label for="hireDate" class="block text-sm font-medium leading-6 text-gray-900">Hire date</label>
+                    <label for="hireDate" class="block text-sm font-medium leading-6 text-gray-900">Hire date<span class="text-red-500">*</span></label>
                     <div class="mt-2">
                         <input type="date" placeholder="Select Date" name="hireDate" id="hireDate" value="${employee.convertTimestampToDate(employee.getHireDate()).toString()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
@@ -112,6 +112,41 @@
                         </div>
                     @endif
                 </div>
+
+                <div class="col-span-full">
+                    <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Address</label>
+                    <div class="mt-2">
+                        <input type="text" name="address" id="streetAddress" value="${employee.getAddress()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2 sm:col-start-1">
+                    <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
+                    <div class="mt-2">
+                        <input type="text" name="city" id="city" value="${employee.getCity()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Region</label>
+                    <div class="mt-2">
+                        <select id="region" name="region" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <option value="">Select a county</option>
+                            <option value="BERK" selected="${employee.getRegion() != null && employee.getRegion().equals("BERK")}">Berkshire</option>
+                            <option value="HERT" selected="${employee.getRegion() != null && employee.getRegion().equals("HERT")}">Hertfordshire</option>
+                            <option value="OXFD" selected="${employee.getRegion() != null && employee.getRegion().equals("OXFD")}">Oxfordshire</option>
+                            <!-- Add more states as needed -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="postalCode" class="block text-sm font-medium leading-6 text-gray-900">Postal code</label>
+                    <div class="mt-2">
+                        <input type="text" name="postalCode" id="postalCode" value="${employee.getPostalCode()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
 
                 <div class="sm:col-span-3">
                     <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country<span class="text-red-500">*</span></label>
@@ -132,13 +167,6 @@
                             ${bindingResult.getFieldError("country").getDefaultMessage()}
                         </div>
                     @endif
-                </div>
-
-                <div class="col-span-full">
-                    <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Address</label>
-                    <div class="mt-2">
-                        <input type="text" name="address" id="streetAddress" value="${employee.getAddress()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
                 </div>
 
 

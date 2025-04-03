@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import com.ui.model.Employee;
 import com.ui.model.EmployeeForm;
 import com.ui.service.EmployeeService;
-import com.ui.service.CountryService;
+import com.ui.service.FormService;
 import com.ui.util.FINAL;
 import com.ui.util.InterMessage;
 import com.ui.model.CurrentPage;
@@ -15,13 +15,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Locale;
@@ -32,15 +29,15 @@ public class EmployeeController extends ParentController{
     private static final Logger logger= LoggerFactory.getLogger(CustomerController.class);
 
     public EmployeeController(EmployeeService employeeService,
-                              CountryService countryService,
+                              FormService formService,
                               MessageSource messageSource){
         super(messageSource);
         this.employeeService= employeeService;
-        this.countryService= countryService;
+        this.formService= formService;
     }
     private InterMessage interMessage;
     private final EmployeeService employeeService;
-    private final CountryService countryService;
+    private final FormService formService;
 
     @GetMapping("/employee-form-vm")
     public String getEmployeeForm(HttpServletRequest request, Model model){
@@ -49,9 +46,10 @@ public class EmployeeController extends ParentController{
         request.getSession().setAttribute(FINAL.CURRENT_PAGE, currentPage);
 
         EmployeeForm employeeForm= new EmployeeForm();
-        employeeForm.setCountries(countryService.getAllCountries());
+        employeeForm.setCountries(formService.getAllCountries());
+        employeeForm.setRegions(formService.getAllRegions());
+        employeeForm.setTitles(formService.getAllTitles());
 
-        //Map<String, String> countries = countryService.getAllCountries();
         model.addAttribute("employeeForm", employeeForm);
 
         Employee employee= new Employee();
@@ -78,7 +76,7 @@ public class EmployeeController extends ParentController{
             currentPage.setMessage(null);
             model.addAttribute("currentPage", currentPage);
             model.addAttribute("bindingResult", bindingResult);
-            Map<String, String> countries = countryService.getAllCountries();
+            Map<String, String> countries = formService.getAllCountries();
             model.addAttribute("countries", countries);
             logger.error("Validation errors num: employee-form-vm "+ bindingResult.getErrorCount());
             return "layout/master-vm";  // Return to the form with validation errors
