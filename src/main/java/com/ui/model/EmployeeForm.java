@@ -11,4 +11,5 @@ public class EmployeeForm {
     private Map<String, String> countries;
     private Map<String, String> titles;
     private Map<String,String> regions;
+    private Map<Long, String> employeeDropDown;
 }

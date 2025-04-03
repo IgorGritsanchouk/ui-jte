@@ -49,6 +49,7 @@ public class EmployeeController extends ParentController{
         employeeForm.setCountries(formService.getAllCountries());
         employeeForm.setRegions(formService.getAllRegions());
         employeeForm.setTitles(formService.getAllTitles());
+        employeeForm.setEmployeeDropDown(employeeService.getEmployeeDropDown());
 
         model.addAttribute("employeeForm", employeeForm);
 
@@ -74,6 +75,8 @@ public class EmployeeController extends ParentController{
         employeeForm.setCountries(formService.getAllCountries());
         employeeForm.setRegions(formService.getAllRegions());
         employeeForm.setTitles(formService.getAllTitles());
+        employeeForm.setEmployeeDropDown(employeeService.getEmployeeDropDown());
+
         CurrentPage currentPage=(CurrentPage)request.getSession().getAttribute(FINAL.CURRENT_PAGE);
 
         if (bindingResult.hasErrors()) {
@@ -87,10 +90,12 @@ public class EmployeeController extends ParentController{
         }
 
         // no validation errors. can save employee
+        employee.setJobId("1");
         this.employeeService.save(employee);
         currentPage.setMessage("Employee id: "+ employee.getEmployeeId()+ "  name: "+ employee.getFirstName() + "  has been saved. ");
         currentPage.setError(null);
         model.addAttribute("currentPage", currentPage);
+        model.addAttribute("employeeForm", employeeForm);
         logger.info("save-employee-vm. "+ currentPage.getMessage());
         return "layout/master-vm";
     }

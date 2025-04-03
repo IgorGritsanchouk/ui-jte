@@ -1,10 +1,7 @@
 package com.ui.controllers;
 
 import com.ui.model.*;
-import com.ui.service.FormService;
-import com.ui.service.CustomerService;
-import com.ui.service.EmployeeCustomerOrderService;
-import com.ui.service.OrderService;
+import com.ui.service.*;
 import com.ui.util.FINAL;
 import com.ui.util.InterMessage;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,18 +25,21 @@ public class EmployeeCustomerOrderController extends ParentController{
                                            EmployeeCustomerOrderService ecos,
                                            FormService formService,
                                            OrderService orderService,
-                                           CustomerService customerService){
+                                           CustomerService customerService,
+                                           EmployeeService employeeService){
         super(messageSource);
         this.employeeCustomerOrderService= ecos;
         this.orderService= orderService;
         this.formService= formService;
         this.customerService= customerService;
+        this.employeeService= employeeService;
     }
     private InterMessage interMessage;
     private final OrderService orderService;
     private final CustomerService customerService;
     private final FormService formService;
     private final EmployeeCustomerOrderService employeeCustomerOrderService;
+    private final EmployeeService employeeService;
 
     @GetMapping("/ec-orders-vm")
     public String getOrderList(HttpServletRequest request, Model model){
@@ -114,4 +114,34 @@ public class EmployeeCustomerOrderController extends ParentController{
     }
 
 
+    @GetMapping("find-employee-vm")
+    public String getEmployeeForId(@RequestParam long employeeId, HttpServletRequest request, Model model) {
+        String lang= (String)request.getSession().getAttribute(FINAL.LANGUAGE);
+        CurrentPage currentPage= new CurrentPage("Order Form", "pages-jte/employee-form-vm", lang);
+        request.getSession().setAttribute(FINAL.CURRENT_PAGE, currentPage);
+
+        Map<String, String> countries = formService.getAllCountries();
+        model.addAttribute("countries", countries);
+
+        //Order order= this.orderService.findByOrderId(orderId);
+        Optional<Employee> optional= this.employeeService.findForId(employeeId);
+        Employee employee= optional.get();
+
+        EmployeeForm employeeForm= new EmployeeForm();
+        employeeForm.setCountries(formService.getAllCountries());
+        employeeForm.setRegions(formService.getAllRegions());
+        employeeForm.setTitles(formService.getAllTitles());
+        employeeForm.setEmployeeDropDown(employeeService.getEmployeeDropDown());
+
+        model.addAttribute(FINAL.CURRENT_PAGE, currentPage);
+        model.addAttribute("employeeForm", employeeForm);
+        model.addAttribute("employee", employee);
+
+        Locale locale= getLocale(request);
+        interMessage= new InterMessage(messageSource, locale);
+        model.addAttribute("interMessage", interMessage);
+
+        logger.info("Controller. Lang: "+ lang + "  Jte Page Name: "+ currentPage.getJteName());
+        return "layout/master-vm";
+    }
 }

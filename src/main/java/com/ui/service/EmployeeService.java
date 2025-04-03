@@ -10,8 +10,8 @@ import org.springframework.jdbc.core.ConnectionCallback;
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.ui.model.Customer;
 import java.sql.*;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -42,6 +42,20 @@ public class EmployeeService {
     public void save(Employee employee){
         Employee result= this.employeeRepository.save(employee);
         logger.info("Saved employee id: "+ result.getEmployeeId()+" name: "+ result.getFirstName());
+    }
+
+    public Map<Long, String> getEmployeeDropDown(){
+
+        List<Employee> allEmployees= this.employeeRepository.findAll();
+
+        Map<Long, String> empDropDown= new HashMap();
+
+        for(Iterator<Employee> e = allEmployees.iterator(); e.hasNext(); ) {
+            Employee employee = e.next();
+            empDropDown.put(employee.getEmployeeId(), employee.getFirstName()+" "+ employee.getLastName());
+        }
+
+        return empDropDown;
     }
 
 }

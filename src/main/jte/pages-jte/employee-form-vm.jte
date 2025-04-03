@@ -135,7 +135,6 @@
                     @endif
                 </div>
 
-
                 <div class="sm:col-span-2 sm:col-start-1">
                     <label for="city" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("city.label")}</label>
                     <div class="mt-2">
@@ -163,6 +162,30 @@
                         <input type="text" name="postalCode" id="postalCode" value="${employee.getPostalCode()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
+
+                <div class="sm:col-span-3">
+                    <label for="managerId" class="block text-sm font-medium leading-6 text-gray-900">Manager<span class="text-red-500">*</span></label>
+                    <div class="mt-2">
+                        <select id="managerId" name="managerId" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <option value="">Select manager</option>
+                            @for (Map.Entry<Long, String> entry : employeeForm.getEmployeeDropDown().entrySet())
+                                <option value="${entry.getKey()}" selected="${employee.getEmployeeId() != null && employee.getEmployeeId().equals(entry.getKey())}">
+                                    ${entry.getValue()}
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+
+                <div class="sm:col-span-3">
+                    <label for="notes" class="block text-sm font-medium leading-6 text-gray-900">Notes</label>
+                    <div class="mt-2">
+                        <textarea id="notes" name="notes" rows="4" cols="50" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            ${employee.getNotes()}
+                        </textarea>
+                    </div>
+                </div>
+
 
             </div>
         </div>
