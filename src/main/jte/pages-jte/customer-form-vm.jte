@@ -98,21 +98,21 @@
                 </div>
 
                 <div class="col-span-full">
-                    <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Address</label>
+                    <label for="address" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("street.address.label")}</label>
                     <div class="mt-2">
                         <input type="text" name="address" id="streetAddress" value="${customer.getAddress()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
                 <div class="sm:col-span-2 sm:col-start-1">
-                    <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
+                    <label for="city" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("city.label")}</label>
                     <div class="mt-2">
                         <input type="text" name="city" id="city" value="${customer.getCity()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Region</label>
+                    <label for="region" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("state.province.label")}</label>
                     <div class="mt-2">
                         <select id="region" name="region" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select a county</option>
@@ -125,7 +125,7 @@
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label for="postalCode" class="block text-sm font-medium leading-6 text-gray-900">Postal code</label>
+                    <label for="postalCode" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("postal.code.label")}</label>
                     <div class="mt-2">
                         <input type="text" name="postalCode" id="postalCode" value="${customer.getPostalCode()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>

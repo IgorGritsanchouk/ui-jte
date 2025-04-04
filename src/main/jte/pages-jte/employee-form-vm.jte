@@ -80,7 +80,7 @@
                     <div class="mt-2">
                         <select id="title" name="title" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select title</option>
-                            @for (Map.Entry<String, String> entry : employeeForm.getTitles().entrySet())
+                         oi    @for (Map.Entry<String, String> entry : employeeForm.getTitles().entrySet())
                                 <option value="${entry.getKey()}" selected="${employee.getTitle() != null && employee.getTitle().equals(entry.getKey())}">
                                     ${entry.getValue()}
                                 </option>
@@ -180,7 +180,7 @@
                 <div class="sm:col-span-3">
                     <label for="notes" class="block text-sm font-medium leading-6 text-gray-900">Notes</label>
                     <div class="mt-2">
-                        <textarea id="notes" name="notes" rows="4" cols="50" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                        <textarea id="notes" name="notes" rows="3" cols="50" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             ${employee.getNotes()}
                         </textarea>
                     </div>
