@@ -50,6 +50,8 @@ public class EmployeeController extends ParentController{
         employeeForm.setRegions(formService.getAllRegions());
         employeeForm.setTitles(formService.getAllTitles());
         employeeForm.setEmployeeDropDown(employeeService.getEmployeeDropDown());
+        employeeForm.setJobsDropDown(formService.getAllJobs());
+        employeeForm.setDepartmentsDropDown(formService.getAllDepartments());
 
         model.addAttribute("employeeForm", employeeForm);
 

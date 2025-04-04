@@ -45,4 +45,23 @@ public class FormService {
         return regions;
     }
 
+    public Map<String, String> getAllJobs() {
+
+        Map<String, String> jobs = new HashMap<>();
+        jobs.put("Manager", "Manager");
+        jobs.put("Programmer", "Programmer");
+        jobs.put("Engineer", "Engineer");
+        return jobs;
+    }
+
+    public Map<Integer, String> getAllDepartments() {
+
+        Map<Integer, String> departments = new HashMap<>();
+        departments.put(1, "Manager");
+        departments.put(2, "Programmer");
+        departments.put(3, "Engineer");
+        return departments;
+    }
+
+
 }

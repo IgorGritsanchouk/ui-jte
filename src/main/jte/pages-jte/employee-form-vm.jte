@@ -182,7 +182,49 @@
                     </div>
                 </div>
 
-                <div class="sm:col-span-3">
+                <div class="sm:col-span-2 sm:col-start-1">
+                    <label for="salary" class="block text-sm font-medium leading-6 text-gray-900">Salary</label>
+                    <div class="mt-2">
+                        <input type="number" min="0.00" step="0.01" name="salary" id="salary" value="${employee.getSalary()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="commissionPct" class="block text-sm font-medium leading-6 text-gray-900">Commission Percent</label>
+                    <div class="mt-2">
+                        <input type="number" min="0.00" step="0.01" name="commissionPct" id="commissionPct" value="${employee.getCommissionPct()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2 sm:col-start-1">
+                    <label for="jobId" class="block text-sm font-medium leading-6 text-gray-900">Job title<span class="text-red-500">*</span></label>
+                    <div class="mt-2">
+                        <select id="jobId" name="jobId" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <option value="">Select job</option>
+                            @for (Map.Entry<String, String> entry : employeeForm.getJobsDropDown().entrySet())
+                                <option value="${entry.getKey()}" selected="${employee.getJobId() != null && employee.getJobId().equals(entry.getKey())}">
+                                    ${entry.getValue()}
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="departmentId" class="block text-sm font-medium leading-6 text-gray-900">Department<span class="text-red-500">*</span></label>
+                    <div class="mt-2">
+                        <select id="departmentId" name="departmentId" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <option value="">Select department</option>
+                            @for (Map.Entry<Integer, String> entry : employeeForm.getDepartmentsDropDown().entrySet())
+                                <option value="${entry.getKey()}" selected="${employee.getJobId() != null && employee.getJobId().equals(entry.getKey())}">
+                                    ${entry.getValue()}
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
                     <label for="managerId" class="block text-sm font-medium leading-6 text-gray-900">Manager<span class="text-red-500">*</span></label>
                     <div class="mt-2">
                         <select id="managerId" name="managerId" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
