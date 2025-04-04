@@ -32,7 +32,7 @@ CREATE TABLE employees (
     postal_code VARCHAR(30),
     country VARCHAR(20),
     home_phone VARCHAR(20),
-    extention VARCHAR(20),
+    extension VARCHAR(20),
     photo BYTEA,  -- for binary large objects (BLOB)
     notes VARCHAR(50),
     salary DECIMAL(8, 2),
@@ -44,43 +44,43 @@ CREATE TABLE employees (
     CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employees(employee_id)
 );
 
-INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extension, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
 VALUES
 (1, 'John', 'Doe', 'Manager', '1985-03-15', CURRENT_TIMESTAMP, '123 Main St', 'New York', 'NY', '10001', 'USA', '555-1234', '101', NULL, 'Excellent performance', 75000.00, 1234567890, 'MGR', 0.10, NULL, 10);
 
-INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extension, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
 VALUES
 (2, 'Jane', 'Smith', 'Developer', '1990-07-22', CURRENT_TIMESTAMP, '456 Elm St', 'Los Angeles', 'CA', '90001', 'USA', '555-5678', '102', NULL, 'Strong technical skills', 65000.00, 9876543210, 'DEV', 0.05, 1, 20);
 
-INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extension, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
 VALUES
 (3, 'Michael', 'Johnson', 'Sales Rep', '1988-11-10', CURRENT_TIMESTAMP, '789 Pine St', 'Chicago', 'IL', '60007', 'USA', '555-8765', '103', NULL, 'Great customer relations', 55000.00, 2345678901, 'SR', 0.08, 1, 30);
 
-INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extension, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
 VALUES
 (4, 'Emily', 'Davis', 'Developer', '1992-01-05', CURRENT_TIMESTAMP, '101 Maple St', 'San Francisco', 'CA', '94101', 'USA', '555-2345', '104', NULL, 'Creative and innovative', 62000.00, 3456789012, 'DEV', 0.06, 2, 20);
 
-INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extension, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
 VALUES
 (5, 'David', 'Martinez', 'HR Manager', '1982-08-18', CURRENT_TIMESTAMP, '234 Oak St', 'Miami', 'FL', '33101', 'USA', '555-3456', '105', NULL, 'Leadership in HR', 72000.00, 4567890123, 'HRM', 0.09, NULL, 40);
 
-INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extension, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
 VALUES
 (6, 'Sara', 'Wilson', 'Sales Rep', '1994-02-28', CURRENT_TIMESTAMP, '567 Birch St', 'Houston', 'TX', '77001', 'USA', '555-4567', '106', NULL, 'Hardworking and reliable', 59000.00, 5678901234, 'SR', 0.07, 1, 30);
 
-INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extension, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
 VALUES
 (7, 'Kevin', 'Taylor', 'Accountant', '1980-06-10', CURRENT_TIMESTAMP, '890 Cedar St', 'Dallas', 'TX', '75201', 'USA', '555-6789', '107', NULL, 'Excellent with numbers', 68000.00, 6789012345, 'ACC', 0.03, 1, 40);
 
-INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extension, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
 VALUES
 (8, 'Anna', 'Moore', 'Manager', '1986-12-12', CURRENT_TIMESTAMP, '123 Birch St', 'Seattle', 'WA', '98001', 'USA', '555-7890', '108', NULL, 'Great team leader', 75000.00, 7890123456, 'MGR', 0.12, NULL, 10);
 
-INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extension, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
 VALUES
 (9, 'Sophia', 'Brown', 'Marketing Specialist', '1993-04-20', CURRENT_TIMESTAMP, '321 Birch St', 'Austin', 'TX', '73301', 'USA', '555-8901', '109', NULL, 'Creative thinker', 61000.00, 8901234567, 'MKT', 0.04, 8, 50);
 
-INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extention, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
+INSERT INTO employees (employee_id, first_name, last_name, title, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extension, photo, notes, salary, mobile_phone, job_id, commission_pct, manager_id, department_id)
 VALUES
 (10, 'James', 'Anderson', 'IT Support', '1995-09-25', CURRENT_TIMESTAMP, '654 Maple St', 'Boston', 'MA', '02110', 'USA', '555-1239', '110', NULL, 'Tech-savvy and dependable', 50000.00, 9012345678, 'ITS', 0.02, 1, 60);
 

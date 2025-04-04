@@ -163,6 +163,25 @@
                     </div>
                 </div>
 
+                <div class="sm:col-span-2 sm:col-start-1">
+                    <label for="extension" class="block text-sm font-medium leading-6 text-gray-900">Extension</label>
+                    <div class="mt-2">
+                        <input type="text" name="extension" id="extension" value="${employee.getExtension()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="homePhone" class="block text-sm font-medium leading-6 text-gray-900">Home Phone</label>
+                    <div class="mt-2">
+                        <input type="text" name="homePhone" id="homePhone" value="${employee.getHomePhone()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="mobilePhone" class="block text-sm font-medium leading-6 text-gray-900">Mobile Phone</label>
+                    <div class="mt-2">
+                        <input type="text" name="mobilePhone" id="mobilePhone" value="${employee.getMobilePhone()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
                 <div class="sm:col-span-3">
                     <label for="managerId" class="block text-sm font-medium leading-6 text-gray-900">Manager<span class="text-red-500">*</span></label>
                     <div class="mt-2">

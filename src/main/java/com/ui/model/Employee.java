@@ -47,7 +47,7 @@ public class Employee {
     private String postalCode;
     private String country;
     private String homePhone;
-    private String extention;
+    private String extension;
     private byte[] photo;
     private String notes;
     private BigDecimal salary;
@@ -73,12 +73,12 @@ public class Employee {
         if (this == o) return true;
         if (!(o instanceof Employee emp)) return false;
         return Objects.equals(getEmployeeId(), emp.getEmployeeId()) && Objects.equals(getFirstName(), emp.getFirstName()) && Objects.equals(getLastName(), emp.getLastName()) && Objects.equals(getTitle(), emp.getTitle()) && Objects.equals(getBirthDate(), emp.getBirthDate()) && Objects.equals(getHireDate(), emp.getHireDate()) && Objects.equals(getAddress(), emp.getAddress()) && Objects.equals(getCity(), emp.getCity()) && Objects.equals(getRegion(), emp.getRegion()) && Objects.equals(getPostalCode(), emp.getPostalCode())
-                && Objects.equals(getCountry(), emp.getCountry()) && Objects.equals(getHomePhone(), emp.getHomePhone()) && Objects.equals(getExtention(), emp.getExtention()) && Objects.equals(getNotes(), emp.getNotes()) && Objects.equals(getSalary(), emp.getSalary()) && Objects.equals(getMobilePhone(), emp.getMobilePhone()) && Objects.equals(getJobId(), emp.getJobId()) && Objects.equals(getCommissionPct(), emp.getCommissionPct()) && Objects.equals(getManagerId(), emp.getManagerId()) && Objects.equals(getDepartmentId(), emp.getDepartmentId());
+                && Objects.equals(getCountry(), emp.getCountry()) && Objects.equals(getHomePhone(), emp.getHomePhone()) && Objects.equals(getExtension(), emp.getExtension()) && Objects.equals(getNotes(), emp.getNotes()) && Objects.equals(getSalary(), emp.getSalary()) && Objects.equals(getMobilePhone(), emp.getMobilePhone()) && Objects.equals(getJobId(), emp.getJobId()) && Objects.equals(getCommissionPct(), emp.getCommissionPct()) && Objects.equals(getManagerId(), emp.getManagerId()) && Objects.equals(getDepartmentId(), emp.getDepartmentId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEmployeeId(), getFirstName(), getLastName(), getTitle(), getBirthDate(), getHireDate(), getAddress(), getCity(), getRegion(), getPostalCode(), getCountry(), getHomePhone(), getExtention(), getNotes(), getSalary(), getMobilePhone(), getJobId(), getCommissionPct(), getManagerId(), getDepartmentId());
+        return Objects.hash(getEmployeeId(), getFirstName(), getLastName(), getTitle(), getBirthDate(), getHireDate(), getAddress(), getCity(), getRegion(), getPostalCode(), getCountry(), getHomePhone(), getExtension(), getNotes(), getSalary(), getMobilePhone(), getJobId(), getCommissionPct(), getManagerId(), getDepartmentId());
     }
 
 }
