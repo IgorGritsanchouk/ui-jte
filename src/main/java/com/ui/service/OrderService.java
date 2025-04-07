@@ -3,10 +3,12 @@ package com.ui.service;
 import com.ui.mapper.OrderRowMapper;
 import com.ui.model.Customer;
 import com.ui.model.Employee;
+import com.ui.model.Item;
 import com.ui.model.Order;
-import com.ui.repository.CustomerRepository;
-import com.ui.repository.EmployeeRepository;
-import com.ui.repository.OrderRepository;
+import com.ui.repository.*;
+import com.ui.result.EmployeeCustomerOrderResult;
+import com.ui.result.OrderPaginatedResult;
+import com.ui.result.PaginatedResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,11 +22,13 @@ public class OrderService {
     private final Logger logger = LoggerFactory.getLogger(OrderService.class);
 
     public OrderService(OrderRepository orderRepository,
+                        OrderRepositoryPage orderRepositoryPage,
                         CustomerRepository customerRepository,
                         EmployeeRepository employeeRepository,
                         JdbcTemplate jdbcTemplate){
 
         this.orderRepository= orderRepository;
+        this.orderRepositoryPage= orderRepositoryPage;
         this.customerRepository= customerRepository;
         this.employeeRepository= employeeRepository;
         this.jdbcTemplate= jdbcTemplate;
@@ -33,12 +37,12 @@ public class OrderService {
     private OrderRepository orderRepository;
     private EmployeeRepository employeeRepository;
     private CustomerRepository customerRepository;
+    private OrderRepositoryPage orderRepositoryPage;
 
     private JdbcTemplate jdbcTemplate;
 
     public void save(Order order){
-        //Long nextOrderId = jdbcTemplate.queryForObject("SELECT nextval('orders_order_id_seq')", Long.class);
-        //order.setOrderId(nextOrderId);
+
         Order saved= this.orderRepository.save(order);
         logger.info("Saved order ok: "+ saved.getOrderId());
     }
@@ -56,16 +60,14 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
+    public OrderPaginatedResult getPaginatedOrders(int page, int size) {
+        int offset = (page - 1) * size;
+        List<Order> orders= orderRepositoryPage.getPaginatedOrders(offset, size);
+        int totalItems = orderRepositoryPage.getTotalOrdersCount();
+        int totalPages = (int) Math.ceil((double) totalItems / size);
 
-//    public List<Order> findAll() {
-//
-//        String sql = "SELECT * FROM orders order by order_date ASC";
-//        List<Order> orders = jdbcTemplate.query(
-//                sql,
-//                new OrderRowMapper());
-//
-//        return orders;
-//    }
+        return new OrderPaginatedResult(orders, totalItems, totalPages, page, size);
+    }
 
     public void create(Order o) {
 

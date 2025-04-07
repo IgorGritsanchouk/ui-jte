@@ -152,6 +152,21 @@ VALUES
 (11, 2, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + INTERVAL '7 days', CURRENT_TIMESTAMP + INTERVAL '2 days', 3, 'John Doe', '123 Elm Street', 'London', 'Greater London', 'EC1A 1BB', 'UK', 'Shipped', 250.75, 'Credit Card', 'Paid', 'TRK123909');
 
 
+CREATE TABLE items (
+    item_id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(100) NOT NULL,
+    price DECIMAL(10, 2)
+);
+
+INSERT INTO items (item_id, name, description, price)
+VALUES
+(1, 'heater', 'mobile device for heating', 149.99),
+(2, 'tea short', 'item for summer', 9.99),
+(3, 'Alice in wonderland', 'book for children', 7.45),
+(4, 'samsung galaxy', 'mobile phone', 199.99);
+
+
 CREATE OR REPLACE FUNCTION get_employee_orders(empid INT)
 RETURNS TABLE(
     employee_id INT,

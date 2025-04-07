@@ -8,6 +8,8 @@
 @param com.ui.model.Employee employee
 @param com.ui.model.EmployeeForm employeeForm
 @param java.util.List<com.ui.model.EmployeeCustomerOrder> ecOrdersLst
+@param com.ui.result.PaginatedResult itemPaginatedResult
+@param com.ui.result.EmployeeCustomerOrderResult ecOrderPaginationResult
 @param com.ui.util.InterMessage messages
 @param com.ui.model.CurrentPage currentPage
 @param BindingResult bindingResult
@@ -123,7 +125,10 @@
                     @template.pages-jte.order-form-vm(messages= messages, orderForm= orderForm, order= order, currentPage= currentPage, bindingResult=bindingResult)
                 @endif
                 @if (currentPage.getJteName() == "pages-jte/ec-orders-vm")
-                    @template.pages-jte.ec-orders-vm(messages= messages, ecOrdersLst= ecOrdersLst, currentPage= currentPage)
+                    @template.pages-jte.ec-orders-vm(messages= messages, ecOrderPaginationResult= ecOrderPaginationResult, currentPage= currentPage)
+                @endif
+                @if (currentPage.getJteName() == "pages-jte/items-vm")
+                    @template.pages-jte.items-vm(messages= messages, itemPaginatedResult= itemPaginatedResult, currentPage= currentPage)
                 @endif
 
             </div>

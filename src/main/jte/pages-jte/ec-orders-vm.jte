@@ -2,7 +2,7 @@
 @import com.ui.model.CurrentPage
 @param InterMessage messages
 @param CurrentPage currentPage
-@param java.util.List<com.ui.model.EmployeeCustomerOrder> ecOrdersLst
+@param com.ui.result.EmployeeCustomerOrderResult ecOrderPaginationResult
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +33,7 @@
         </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-        @for(var ecOrder : ecOrdersLst)
+        @for(var ecOrder : ecOrderPaginationResult.getOrders())
             <tr class="hover:bg-gray-50">
                 <td class="px-6 py-4 text-sm text-gray-500">
                     <a href="/find-customer-vm?customerId=${ecOrder.getCustomerId()}" class="text-blue-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${ecOrder.getCompanyName()}</a>
@@ -67,6 +67,20 @@
  -->
             </tr>
         @endfor
+
+        <div class="px-6 py-4 text-sm text-gray-500">
+            <span>page: ${ecOrderPaginationResult.getCurrentPage()}</span>
+            <span>of ${ecOrderPaginationResult.getTotalPages()} &nbsp;&nbsp;</span>
+
+            @if(ecOrderPaginationResult.getCurrentPage() > 1)
+                <a href="/ec-orders-vm?page=${(ecOrderPaginationResult.getCurrentPage() - 1)}&size=${ecOrderPaginationResult.getPageSize()}" class="text-blue-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Previous</a>
+            @endif
+
+            @if(ecOrderPaginationResult.getCurrentPage() < ecOrderPaginationResult.getTotalPages())
+                <a href="/ec-orders-vm?page=${(ecOrderPaginationResult.getCurrentPage() + 1)}&size=${ecOrderPaginationResult.getPageSize()}" class="text-blue-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Next</a>
+            @endif
+        </div>
+
         </tbody>
     </table>
 </div>

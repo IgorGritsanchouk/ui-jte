@@ -1,15 +1,11 @@
 package com.ui.service;
 
 import com.ui.model.Employee;
-import com.ui.repository.CustomerRepository;
 import com.ui.repository.EmployeeRepository;
-import com.ui.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.core.ConnectionCallback;
 import org.springframework.jdbc.core.JdbcTemplate;
-import com.ui.model.Customer;
-import java.sql.*;
+
 import java.util.*;
 
 import org.springframework.stereotype.Service;

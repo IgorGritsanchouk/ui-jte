@@ -1,6 +1,7 @@
 package com.ui.controllers;
 
 import com.ui.model.*;
+import com.ui.result.EmployeeCustomerOrderResult;
 import com.ui.service.*;
 import com.ui.util.FINAL;
 import com.ui.util.InterMessage;
@@ -42,15 +43,17 @@ public class EmployeeCustomerOrderController extends ParentController{
     private final EmployeeService employeeService;
 
     @GetMapping("/ec-orders-vm")
-    public String getOrderList(HttpServletRequest request, Model model){
+    public String geItemList(@RequestParam(defaultValue = "1") int page,
+                             @RequestParam(defaultValue = "5") int size,
+                             HttpServletRequest request, Model model){
 
         String lang= (String)request.getSession().getAttribute(FINAL.LANGUAGE);
         CurrentPage currentPage= new CurrentPage("Customer orders with employee allocation", "pages-jte/ec-orders-vm", lang);
         request.getSession().setAttribute(FINAL.CURRENT_PAGE, currentPage);
 
-        List<EmployeeCustomerOrder> ecOrdersLst= this.employeeCustomerOrderService.findAll();
+        EmployeeCustomerOrderResult ecOrderPaginationResult= this.employeeCustomerOrderService.getPaginatedOrders(page, size);
         model.addAttribute(FINAL.CURRENT_PAGE, currentPage);
-        model.addAttribute("ecOrdersLst", ecOrdersLst);
+        model.addAttribute("ecOrderPaginationResult", ecOrderPaginationResult);
 
         Locale locale= getLocale(request);
         interMessage= new InterMessage(messageSource, locale);
@@ -59,6 +62,26 @@ public class EmployeeCustomerOrderController extends ParentController{
         logger.info("Lang: "+ lang + "  Jte Page Name: "+ currentPage.getJteName());
         return "layout/master-vm";
     }
+
+// old version with list rather than pagination
+//    @GetMapping("/ec-orders-vm")
+//    public String getOrderList(HttpServletRequest request, Model model){
+//
+//        String lang= (String)request.getSession().getAttribute(FINAL.LANGUAGE);
+//        CurrentPage currentPage= new CurrentPage("Customer orders with employee allocation", "pages-jte/ec-orders-vm", lang);
+//        request.getSession().setAttribute(FINAL.CURRENT_PAGE, currentPage);
+//
+//        List<EmployeeCustomerOrder> ecOrdersLst= this.employeeCustomerOrderService.findAll();
+//        model.addAttribute(FINAL.CURRENT_PAGE, currentPage);
+//        model.addAttribute("ecOrdersLst", ecOrdersLst);
+//
+//        Locale locale= getLocale(request);
+//        interMessage= new InterMessage(messageSource, locale);
+//        model.addAttribute("interMessage", interMessage);
+//
+//        logger.info("Lang: "+ lang + "  Jte Page Name: "+ currentPage.getJteName());
+//        return "layout/master-vm";
+//    }
 
     @GetMapping("find-order-vm")
     public String getOrderForId(@RequestParam long orderId, HttpServletRequest request, Model model) {
