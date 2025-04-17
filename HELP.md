@@ -1,3 +1,8 @@
+simplified spring security login:
+user     pwd: user_password
+admin    pwd: admin_password
+manager  pwd: manager_password
+
 install docker and then run
 PS C:\APP_DEV\java-template-engine>docker compose up
 to instantiate postgres data base as a container, to check tables and stored proc use link below:
@@ -15,6 +20,9 @@ spring.datasource.url=jdbc:postgresql://localhost:5432/postgres_db
 spring.datasource.username=admin
 spring.datasource.password=password
 spring.datasource.driver-class-name=org.postgresql.Driver
+
+# Spring Security JDBC Authentication  // tutorial on using database
+https://www.youtube.com/watch?v=d7ZmZFbE_qY&t=1017s
 
 // It was a requirement to use postgresDB, so we switched to postgres instead of oracle
 https://www.youtube.com/watch?v=DMU-8tNaeGI
