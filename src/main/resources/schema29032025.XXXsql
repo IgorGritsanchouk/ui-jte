@@ -268,7 +268,9 @@ VALUES
 ('manager', '$2a$10$0kfZucw9DHekuhpK2k2gfu3rM.GnE3GNrFeTwK2d1Qj1rabMqIfuG', true),
 ('admin', '$2a$10$Kb.e6F.wveckBV9tka/EXeF40zJIkJzDkz1XXZIgRxSwocWMNGuI.', true),
 ('verifier', '$2a$10$NuvezioMqJZzN7DHx4GRT.C6VzYuOPobVxbOk3SbnjlH9uP8LIKcm', true),
-('multiuser', '$2a$10$cjyS4KcZlHZCC3Y0TBOqF.Rd6yrzXuLLisgW1pfYfNKQH7HbA2HSy', true);
+('multiuser', '$2a$10$cjyS4KcZlHZCC3Y0TBOqF.Rd6yrzXuLLisgW1pfYfNKQH7HbA2HSy', true),
+('IG01', '$2a$10$Kb.e6F.wveckBV9tka/EXeF40zJIkJzDkz1XXZIgRxSwocWMNGuI.', true);
+
 
 create table authorities (
     username citext NOT NULL CHECK (char_length(username) <= 50),
@@ -282,7 +284,8 @@ VALUES
 ('admin', 'ROLE_ADMIN'),
 ('verifier', 'ROLE_VERIFIER'),
 ('multiuser', 'ROLE_VERIFIER'),
-('multiuser', 'ROLE_USER');
+('multiuser', 'ROLE_USER'),
+('IG01', 'ROLE_ADMIN');
 
 create unique index ix_auth_username on authorities (username,authority);
 
