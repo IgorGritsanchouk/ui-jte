@@ -104,14 +104,14 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                //.csrf(csrf -> csrf.ignoringRequestMatchers("/"))
-                //.csrf(csrf -> csrf.ignoringRequestMatchers("/home-vm"))
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/**", "main.css", "js/alpine.min.js", "mark.svg"))
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/home-vm"))
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/change-language"))
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/permitted"))
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
                 .authorizeHttpRequests( auth -> auth
-                        //.requestMatchers("/").permitAll()
-                        //.requestMatchers("/home-vm").permitAll()
+                        .requestMatchers("/**", "main.css", "js/alpine.min.js", "mark.svg").permitAll()
+                        .requestMatchers("/home-vm").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/change-language").permitAll()
                         .requestMatchers("/permitted").permitAll()
