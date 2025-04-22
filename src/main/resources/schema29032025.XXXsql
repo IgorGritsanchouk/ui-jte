@@ -231,29 +231,6 @@ drop view employee_customer_order_view;
 
 +++  THIS IS NOT YET IMPLEMENTED  -  email instead of username TO DO !!!!!!
 ---   security related tables ----
--- Enable the citext extension (once per database)
-CREATE EXTENSION IF NOT EXISTS citext;
-
-CREATE TABLE users (
-    email citext NOT NULL PRIMARY KEY CHECK (char_length(email) <= 50),
-    password citext NOT NULL CHECK (char_length(password) <= 500),
-    enabled BOOLEAN NOT NULL
-);
-
-create table authorities (
-    email citext NOT NULL PRIMARY KEY CHECK (char_length(email) <= 50),
-    authority citext NOT NULL CHECK (char_length(authority) <= 50),
-    constraint fk_authorities_users foreign key(email) references users(email));
-
-create unique index ix_auth_email on authorities (email,authority);
-
-select * from users;
-select * from authorities;
-
-drop table authorities;
-drop table users;
-
-===============  old version to switch uing email instead of username  TODO!!!!!
 CREATE EXTENSION IF NOT EXISTS citext;
 
 CREATE TABLE users (

@@ -3,6 +3,30 @@ user     pwd: user_password
 admin    pwd: admin_password
 manager  pwd: manager_password
 
+--- using mvn wrapper ---
+PS C:\APP_DEV\ui-jte> mvn.cmd clean package
+PS C:\APP_DEV\ui-jte> ./mvnw.cmd clean package    ( using maven wrapper )
+PS C:\APP_DEV\ui-jte> java -jar target/ui-jte-0.0.1-SNAPSHOT.jar
+PS C:\APP_DEV\ui-jte> java "-Dspring.profiles.active=prod" -jar target/ui-jte-0.0.1-SNAPSHOT.jar
+
+-- TO USE GRAAL first download GRAAL VM jdk and use it instead also change ENV VAR JAVA_HOME=
+to point to GRAALVM jdk in order to create a native image for Windows in my case!!!
+--- https://www.graalvm.org/release-notes/JDK_21/
+PS C:\APP_DEV\ui-jte> java -version
+java version "21.0.5" 2024-10-15 LTS
+Java(TM) SE Runtime Environment Oracle GraalVM 21.0.5+9.1 (build 21.0.5+9-LTS-jvmci-23.1-b48)
+Java HotSpot(TM) 64-Bit Server VM Oracle GraalVM 21.0.5+9.1 (build 21.0.5+9-LTS-jvmci-23.1-b48, mixed mode, sharing)
+
+--- GRAAL native image related ----
+PS C:\APP_DEV\ui-jte> ./mvnw.cmd clean package
+PS C:\APP_DEV\ui-jte> ./mvnw.cmd -Pnative native:compile
+PS C:\APP_DEV\ui-jte> ./target/jte-production "-Dspring.profiles.active=prod"
+PS C:\APP_DEV\ui-jte> ./target/jte-production "-Dspring.profiles.active=prod"
+PS C:\APP_DEV\ui-jte> ./mvnw.cmd -Pnative native:compile
+
+---  to run executable file with prod settings  ---
+PS C:\APP_DEV\ui-jte> ./target/ui-jte "-Dspring.profiles.active=prod"
+
 install docker and then run
 PS C:\APP_DEV\java-template-engine>docker compose up
 to instantiate postgres data base as a container, to check tables and stored proc use link below:
@@ -92,6 +116,9 @@ PS C:\APP_DEV\java-template-engine\src\main\frontend> npx tailwindcss init
 PS C:\APP_DEV\java-template-engine\src\main\frontend> npm run build
 PS C:\APP_DEV\java-template-engine\src\main\frontend> npm run watch
 
+###  DOCKER related
+PS C:\APP_DEV\ui-jte> docker build -f Dockerfile -t ui-jte-img:v01 .
+PS C:\APP_DEV\ui-jte> docker run -p 80:80 ui-jte-img:v01
 
 ### Reference Documentation
 For further reference, please consider the following sections:

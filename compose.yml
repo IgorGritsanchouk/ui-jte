@@ -21,6 +21,16 @@ services:
     depends_on:
       - postgres
 
+# ----   needed with  Nginx  -----
+#  ui-jte:
+#    image: ui-jte-img:v01
+#    restart: always
+#    container_name: ui-jte-v01-cnr
+#    ports:
+#      - 80:80
+#    depends_on:
+#      - postgres
+
 
 # this is not needed in dev mode
 #  jt-engine-app:
