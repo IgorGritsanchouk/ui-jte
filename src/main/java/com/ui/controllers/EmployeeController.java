@@ -1,5 +1,6 @@
 package com.ui.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import com.ui.model.Employee;
 import com.ui.model.EmployeeForm;
@@ -39,6 +40,7 @@ public class EmployeeController extends ParentController{
     private final EmployeeService employeeService;
     private final FormService formService;
 
+    @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/employee-form-vm")
     public String getEmployeeForm(HttpServletRequest request, Model model){
         String lang= (String)request.getSession().getAttribute(FINAL.LANGUAGE);

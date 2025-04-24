@@ -42,7 +42,7 @@ public class EmployeeCustomerOrderController extends ParentController{
     private final FormService formService;
     private final EmployeeCustomerOrderService employeeCustomerOrderService;
     private final EmployeeService employeeService;
-    @PreAuthorize("hasRole('ADMIN')")
+ //   @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/ec-orders-vm")
     public String geItemList(@RequestParam(defaultValue = "1") int page,
                              @RequestParam(defaultValue = "5") int size,

@@ -1,3 +1,11 @@
+
+//docker compose up --scale ui-jte=2  this does not work
+docker compose up   now, as scailed containers are specified in compose.yml
+
+--- docker image for load balancing ---
+docker pull nginx:stable-alpine3.20-perl
+--  nginx related:   https://www.youtube.com/watch?v=9aOpRhm33oM  
+
 simplified spring security login:
 user     pwd: user_password
 admin    pwd: admin_password
@@ -74,10 +82,17 @@ To run the application docker desktop is required to be installed
     download native Graal jdk from :
     https://www.graalvm.org/release-notes/JDK_21/
     -- native compile  POINT to: JAVA_HOME=C:\Program Files\Java\graalvm-jdk-21.0.5+9.1
-    PS C:\APP_DEV\java-template-engine> ./mvnw -Pnative native:compile
-    PS C:\APP_DEV\java-template-engine\target> start java-template-engine.exe
-    java-template-engine> docker build -f Dockerfile -t igr025/jt-engine-21-img:v0.1 .
-    java-template-engine> docker push igr025/jt-engine-21-img:v0.1
+    PS C:\APP_DEV\ui-jte> ./mvnw -Pnative native:compile
+4)  PS C:\APP_DEV\ui-jte> ./target/ui-jte "-Dspring.profiles.active=prod"
+    PS C:\APP_DEV\ui-jte\target> start ui-jte.exe "-Dspring.profiles.active=prod" ??
+4) 
+---  docker related ---
+PS C:\APP_DEV\ui-jte> docker build -f Dockerfile -t ui-jte-img:v0.1 .
+PS C:\APP_DEV\ui-jte> docker build -f Dockerfile -t igr025/jt-engine-21-img:v0.1 .
+PS C:\APP_DEV\ui-jte> docker push igr025/jt-engine-21-img:v0.1
+-- running 2 containers with nginx proxy and API gatway setup --
+PS C:\APP_DEV\ui-jte> docker compose up --scale ui-jte=2
+
     ---  USE mvn wrapper package to install node and npm ---
     PS C:\APP_DEV\java-template-engine> ./mvnw compile
     PS C:\APP_DEV\java-template-engine> ./mvnw clean package
