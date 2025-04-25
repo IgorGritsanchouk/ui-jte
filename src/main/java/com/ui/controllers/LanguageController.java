@@ -55,6 +55,13 @@ public class LanguageController extends ParentController{
 
         request.getSession().setAttribute("locale", locale);
         CurrentPage currentPage= (CurrentPage)request.getSession().getAttribute(FINAL.CURRENT_PAGE);
+
+        if( currentPage == null){
+
+            logger.error("Current page is null. Using default home-vm current page.");
+            currentPage= new CurrentPage("Home", "pages-jte/home-vm", locale.getLanguage());
+        }
+
         logger.info("LanguageController. Changing Lang to: "+ language+ ". Moving to page: "+ currentPage.getJteName()+"  Mapping: "+currentPage.getMapping());
 
         return "redirect:/"+currentPage.getMapping();

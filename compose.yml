@@ -1,4 +1,4 @@
-## for local development ad debug. run to start db and populate data using script
+## for local development with debug. run to start db and populate data using script
 services:
   postgres:
     image: 'postgres:17.2'
@@ -23,21 +23,22 @@ services:
       - postgres
 
   # ----   needed with  Nginx for extra load  -----
-#  ui-jte:
-#    image: ui-jte-img:v0.1
-##    restart: always
-##    container_name: ui-jte-v01-cnr
-##    ports:
-##      - 80:80
+#  ui-jte1:
+#    image: igr025/ui-jte-21-img:v0.1
+#    restart: always
+#    build: .
+#    container_name: ui-jte-21-v01-cnr
+#    ports:
+#      - 80:80
 #    depends_on:
 #      - postgres
 #    expose:
 #      - 80
 
 #  ui-jte2:
-#    image: ui-jte-img:v0.1
+#    image: igr025/ui-jte-21-img:v0.1
 #    ##    restart: always
-#    ##    container_name: ui-jte-v01-cnr
+#    ##    container_name: ui-jte-21-v01-cnr
 #    ##    ports:
 #    ##      - 80:80
 #    depends_on:
@@ -55,3 +56,4 @@ services:
 #    depends_on:
 #      - ui-jte1
 #      - ui-jte2
+#      - ui-jte3

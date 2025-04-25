@@ -44,6 +44,17 @@ services:
     expose:
       - 80
 
+  ui-jte3:
+    image: ui-jte-img:v0.1
+    ##    restart: always
+    ##    container_name: ui-jte-v01-cnr
+    ##    ports:
+    ##      - 80:80
+    depends_on:
+      - postgres
+    expose:
+      - 80
+
   nginx:
     image: nginx:stable-alpine3.20-perl
     container_name: nginx-cnr
@@ -54,7 +65,7 @@ services:
     depends_on:
       - ui-jte1
       - ui-jte2
-
+      - ui-jte3
 
 #  nginx:
 #    image: nginx:latest

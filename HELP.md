@@ -1,10 +1,4 @@
-
-//docker compose up --scale ui-jte=2  this does not work
-docker compose up   now, as scailed containers are specified in compose.yml
-
---- docker image for load balancing ---
-docker pull nginx:stable-alpine3.20-perl
---  nginx related:   https://www.youtube.com/watch?v=9aOpRhm33oM  
+docker compose up
 
 simplified spring security login:
 user     pwd: user_password
@@ -88,8 +82,15 @@ To run the application docker desktop is required to be installed
 4) 
 ---  docker related ---
 PS C:\APP_DEV\ui-jte> docker build -f Dockerfile -t ui-jte-img:v0.1 .
-PS C:\APP_DEV\ui-jte> docker build -f Dockerfile -t igr025/jt-engine-21-img:v0.1 .
-PS C:\APP_DEV\ui-jte> docker push igr025/jt-engine-21-img:v0.1
+PS C:\APP_DEV\ui-jte> docker build -f Dockerfile -t igr025/ui-jte-21-img:v0.1 .
+PS C:\APP_DEV\ui-jte> docker push igr025/ui-jte-21-img:v0.1
+
+PS C:\APP_DEV\ui-jte> docker build -f Dockerfile -t ui-jte-21-img:v0.1 .
+PS C:\APP_DEV\ui-jte> docker tag ui-jte-21-img:v0.1 igr025/ui-jte-21-img:v0.1
+PS C:\APP_DEV\ui-jte> docker push igr025/ui-jte-21-img:v0.1
+b39f5adcc6d9: Pushed
+
+
 -- running 2 containers with nginx proxy and API gatway setup --
 PS C:\APP_DEV\ui-jte> docker compose up --scale ui-jte=2
 
@@ -132,8 +133,21 @@ PS C:\APP_DEV\java-template-engine\src\main\frontend> npm run build
 PS C:\APP_DEV\java-template-engine\src\main\frontend> npm run watch
 
 ###  DOCKER related
-PS C:\APP_DEV\ui-jte> docker build -f Dockerfile -t ui-jte-img:v01 .
+PS C:\APP_DEV\ui-jte> docker build -f Dockerfile -t ui-jte-img:v0.1 .
 PS C:\APP_DEV\ui-jte> docker run -p 80:80 ui-jte-img:v01
+
+
+// docker compose logs -f ui-jte1    // to check logs of first server
+// docker compose logs -f ui-jte2    // docker rm -f   //stops one of the containers
+// watch -n 1 curl -s localhost:80    // not yet tried
+// docker compose down && docker compose up -d    // hot refresh nginx configuration
+// curl -s localhost:80
+docker compose up   now, as 3 instances are specified in compose.yml
+//docker compose up --scale ui-jte=2  this does not work
+
+--- docker image for load balancing ---
+docker pull nginx:stable-alpine3.20-perl
+--  nginx related:   https://www.youtube.com/watch?v=9aOpRhm33oM
 
 ### Reference Documentation
 For further reference, please consider the following sections:
