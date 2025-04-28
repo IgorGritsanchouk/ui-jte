@@ -1,5 +1,7 @@
 package com.ui.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,9 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SecurityRestController {
 
+    @Autowired
+    private ApplicationContext applicationContext;
+
     @GetMapping("/permitted")
     public String permitted() {
-        return "Hello, Access Permitted!";
+
+        StringBuffer sb= new StringBuffer();
+        for(String beanName : applicationContext.getBeanDefinitionNames()){
+            sb.append( beanName+ "  ");
+        }
+
+        return "Hello, Access Permitted! "+ sb.toString();
     }
 
     @GetMapping("/home")
