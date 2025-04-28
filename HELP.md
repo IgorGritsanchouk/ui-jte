@@ -133,8 +133,8 @@ PS C:\APP_DEV\java-template-engine\src\main\frontend> npm run build
 PS C:\APP_DEV\java-template-engine\src\main\frontend> npm run watch
 
 ###  DOCKER related
-PS C:\APP_DEV\ui-jte> docker build -f Dockerfile -t ui-jte-img:v0.1 .
-PS C:\APP_DEV\ui-jte> docker run -p 80:80 ui-jte-img:v01
+PS C:\APP_DEV\ui-jte> docker build -f Dockerfile -t ui-jte-21-img:v0.1 .
+PS C:\APP_DEV\ui-jte> docker run -p 80:80 ui-jte-21-img:v01
 
 
 // docker compose logs -f ui-jte1    // to check logs of first server
