@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.util.List;
 
 //@Component
-public class UserDataLoader { //implements CommandLineRunner {
+public class UserDataLoader {    //implements CommandLineRunner {
 
 //    private final Logger logger= LoggerFactory.getLogger(UserDataLoader.class);
 //    private final ObjectMapper objectMapper;
@@ -28,6 +28,7 @@ public class UserDataLoader { //implements CommandLineRunner {
 //
 //    @Override
 //    public void run(String... args) throws Exception {
+//
 //        if(userRepository.count() == 0){
 //            String USERS_JSON = "/data/users.json";
 //            logger.info("Loading users into database from JSON: {}", USERS_JSON);
@@ -37,7 +38,7 @@ public class UserDataLoader { //implements CommandLineRunner {
 //
 //                for(int i=0; i < users.size(); i++){
 //                    User user= users.get(i);
-//                    user.setId(null); // reset to null in order to insert new entry
+//                    //user.setId(null); // reset to null in order to insert new entry
 //                    userRepository.save(user);
 //                }
 //                //userRepository.saveAll(users.getUsers());

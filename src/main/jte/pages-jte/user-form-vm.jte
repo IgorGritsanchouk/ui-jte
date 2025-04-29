@@ -14,9 +14,7 @@
     <link href="main.css" rel="stylesheet" />
 </head>
 
-
 <body class="bg-gray-100 p-6">
-
 <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
     <form class="p-6" action="/save-user-vm" method="post">
         <div class="border-b border-gray-900/10 pb-12">
@@ -45,20 +43,7 @@
                         <input type="text"
                                name="firstName"
                                id="firstName"
-                               value="${user.getFirstName()}"
-                               class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label for="lastName" class="block text-sm font-medium leading-6 text-gray-900">
-                        ${messages.getMessage("last.name.label")} <span class="text-red-500">*</span>
-                    </label>
-                    <div class="mt-2">
-                        <input type="text"
-                               name="lastName"
-                               id="lastName"
-                               value="${user.getLastName()}"
+                               value="${user.getName()}"
                                class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
@@ -70,50 +55,13 @@
                     </div>
                 </div>
 
-                <div class="sm:col-span-3">
-                    <label for="country" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("country.label")}</label>
-                    <div class="mt-2">
-                        <select id="country" name="country" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                            <option value="">Select a country</option>
-                            <option value="UK" selected="${user.getCountry()  != null && user.getCountry().equals("UK")}">United Kingdom</option>
-                            <!-- Add more countries as needed -->
-                        </select>
-                    </div>
-                </div>
-
                 <div class="col-span-full">
-                    <label for="streetAddress" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("street.address.label")}</label>
+                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("street.address.label")}</label>
                     <div class="mt-2">
-                        <input type="text" name="streetAddress" id="streetAddress" value="${user.getStreetAddress()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input type="text" name="password" id="password" value="${user.getPassword()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
-                <div class="sm:col-span-2 sm:col-start-1">
-                    <label for="city" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("city.label")}</label>
-                    <div class="mt-2">
-                        <input type="text" name="city" id="city" value="${user.getCity()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-
-                <div class="sm:col-span-2">
-                    <label for="region" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("state.province.label")}</label>
-                    <div class="mt-2">
-                        <select id="region" name="region" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                            <option value="">Select a county</option>
-                            <option value="BERK" selected="${user.getRegion() != null && user.getRegion().equals("BERK")}">Berkshire</option>
-                            <option value="HERT" selected="${user.getRegion() != null && user.getRegion().equals("HERT")}">Hertfordshire</option>
-                            <option value="OXFD" selected="${user.getRegion() != null && user.getRegion().equals("OXFD")}">Oxfordshire</option>
-                            <!-- Add more states as needed -->
-                        </select>
-                    </div>
-                </div>
-
-                <div class="sm:col-span-2">
-                    <label for="postalCode" class="block text-sm font-medium leading-6 text-gray-900">${messages.getMessage("postal.code.label")}</label>
-                    <div class="mt-2">
-                        <input type="text" name="postalCode" id="postalCode" value="${user.getPostalCode()}" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -123,5 +71,6 @@
         </div>
     </form>
 </div>
+
 </body>
 </html>

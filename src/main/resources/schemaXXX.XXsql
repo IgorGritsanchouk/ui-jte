@@ -189,18 +189,19 @@ CREATE EXTENSION IF NOT EXISTS citext;
 
 CREATE TABLE users (
     username citext NOT NULL PRIMARY KEY CHECK (char_length(username) <= 50),
-    password citext NOT NULL CHECK (char_length(password) <= 500),
+    email citext UNIQUE NOT NULL CHECK (char_length(email) <=100),
+    password citext NOT NULL CHECK (char_length(password) <= 300),
     enabled BOOLEAN NOT NULL
 );
 
 INSERT INTO users (username, password, enabled)
 VALUES
-('user', '$2a$10$BgjnlVEUe8VYVF.YTSd4zuT7vAE8UxUUy0BZJxstTatdvamu.ooYm', true),
-('manager', '$2a$10$0kfZucw9DHekuhpK2k2gfu3rM.GnE3GNrFeTwK2d1Qj1rabMqIfuG', true),
-('admin', '$2a$10$Kb.e6F.wveckBV9tka/EXeF40zJIkJzDkz1XXZIgRxSwocWMNGuI.', true),
-('verifier', '$2a$10$NuvezioMqJZzN7DHx4GRT.C6VzYuOPobVxbOk3SbnjlH9uP8LIKcm', true),
-('multiuser', '$2a$10$cjyS4KcZlHZCC3Y0TBOqF.Rd6yrzXuLLisgW1pfYfNKQH7HbA2HSy', true),
-('IG01', '$2a$10$Kb.e6F.wveckBV9tka/EXeF40zJIkJzDkz1XXZIgRxSwocWMNGuI.', true);
+('user','user@gmail.com', '$2a$10$BgjnlVEUe8VYVF.YTSd4zuT7vAE8UxUUy0BZJxstTatdvamu.ooYm', true),
+('manager', 'manager@gmail.com', '$2a$10$0kfZucw9DHekuhpK2k2gfu3rM.GnE3GNrFeTwK2d1Qj1rabMqIfuG', true),
+('admin', 'admin@gmail.com', '$2a$10$Kb.e6F.wveckBV9tka/EXeF40zJIkJzDkz1XXZIgRxSwocWMNGuI.', true),
+('verifier', 'verifier@gmail.com', '$2a$10$NuvezioMqJZzN7DHx4GRT.C6VzYuOPobVxbOk3SbnjlH9uP8LIKcm', true),
+('multiuser', 'multiuser@gmail.com','$2a$10$cjyS4KcZlHZCC3Y0TBOqF.Rd6yrzXuLLisgW1pfYfNKQH7HbA2HSy', true),
+('IG01', 'igor@gmail.com', '$2a$10$Kb.e6F.wveckBV9tka/EXeF40zJIkJzDkz1XXZIgRxSwocWMNGuI.', true);
 
 
 create table authorities (

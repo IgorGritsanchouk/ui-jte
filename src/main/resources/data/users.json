@@ -1,37 +1,40 @@
 {
   "users": [
     {
-      "id": 1,
-      "firstName": "Philip",
-      "lastName": "Courtois",
-      "email": "philipc@gmail.com",
-      "country": "England",
-      "streetAddress": "Flat 10",
-      "city": "Maidenhead",
-      "region": "Berkshire",
-      "postalCode": "SL61RU"
+      "name": "user",
+      "email": "user@gmail.com",
+      "password": "$2a$10$BgjnlVEUe8VYVF.YTSd4zuT7vAE8UxUUy0BZJxstTatdvamu.ooYm",
+      "enabled": true
     },
     {
-      "id": 2,
-      "firstName": "Martine",
-      "lastName": "Caster",
-      "email": "martine@gmail.com",
-      "country": "England",
-      "streetAddress": "Forlease Road 23",
-      "city": "Reading",
-      "region": "Berkshire",
-      "postalCode": "SL32RU"
+      "name": "manager",
+      "email": "manager@gmail.com",
+      "password": "$2a$10$0kfZucw9DHekuhpK2k2gfu3rM.GnE3GNrFeTwK2d1Qj1rabMqIfuG",
+      "enabled": true
     },
     {
-      "id": 3,
-      "firstName": "Alex",
-      "lastName": "Flexis",
-      "email": "alex@gmail.com",
-      "country": "England",
-      "streetAddress": "Market Street 11",
-      "city": "Reading",
-      "region": "Berkshire",
-      "postalCode": "RD32RU"
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "$2a$10$Kb.e6F.wveckBV9tka/EXeF40zJIkJzDkz1XXZIgRxSwocWMNGuI.",
+      "enabled": true
+    },
+    {
+      "name": "verifier",
+      "email": "verifier@gmail.com",
+      "password": "$2a$10$NuvezioMqJZzN7DHx4GRT.C6VzYuOPobVxbOk3SbnjlH9uP8LIKcm",
+      "enabled": true
+    },
+    {
+      "name": "multiuser",
+      "email": "multiuser@gmail.com",
+      "password": "$2a$10$cjyS4KcZlHZCC3Y0TBOqF.Rd6yrzXuLLisgW1pfYfNKQH7HbA2HSy",
+      "enabled": true
+    },
+    {
+      "name": "IG01",
+      "email": "igor@gmail.com",
+      "password": "$2a$10$Kb.e6F.wveckBV9tka/EXeF40zJIkJzDkz1XXZIgRxSwocWMNGuI.",
+      "enabled": true
     }
   ]
 }

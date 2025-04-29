@@ -1,3 +1,4 @@
+## for local development with debug. run to start db and populate data using script
 services:
   postgres:
     image: 'postgres:17.2'
@@ -21,85 +22,38 @@ services:
     depends_on:
       - postgres
 
-# ----   needed with  Nginx  -----
-  ui-jte1:
-    image: ui-jte-21-img:v0.1
+  # ----   needed with  Nginx for extra load  -----
+#  ui-jte1:
+#    image: igr025/ui-jte-21-img:v0.1
 #    restart: always
-#    container_name: ui-jte-v01-cnr
+#    build: .
+#    container_name: ui-jte-21-v01-cnr
 #    ports:
 #      - 80:80
-    depends_on:
-      - postgres
-    expose:
-      - 80
-
-  ui-jte2:
-    image: ui-jte-21-img:v0.1
-##    restart: always
-##    container_name: ui-jte-v01-cnr
-##    ports:
-##      - 80:80
-    depends_on:
-      - postgres
-    expose:
-      - 80
-
-  ui-jte3:
-    image: ui-jte-21-img:v0.1
-    ##    restart: always
-    ##    container_name: ui-jte-v01-cnr
-    ##    ports:
-    ##      - 80:80
-    depends_on:
-      - postgres
-    expose:
-      - 80
-
-  nginx:
-    image: nginx:stable-alpine3.20-perl
-    container_name: nginx-cnr
-    ports:
-      - 80:80
-    volumes:
-      - ./conf.d:/etc/nginx/conf.d
-    depends_on:
-      - ui-jte1
-      - ui-jte2
-      - ui-jte3
-
-#  nginx:
-#    image: nginx:latest
-#    container_name: nginx
-#    ports:
-#      - "8080:80"  # Host port 8080 maps to container port 80
-#    volumes:
-#      - ./html:/usr/share/nginx/html:ro  # Mount local html folder as read-only
-#      - ./nginx.conf:/etc/nginx/nginx.conf:ro  # Optional custom config
-#    restart: unless-stopped
-
-
-# this is not needed in dev mode
-#  jt-engine-app:
-  ##      build: .
-#    image: igr025/jt-engine-21-img:v0.1
-#    container_name: jt-engine-cnr
-#    ports:
-#      - 80:80
-#    environment:
-#      db-url: jdbc:postgresql://postgres-db-cnr:5432/postgres_db
-#      db-username: admin
-#      db-password: password
 #    depends_on:
 #      - postgres
-#    restart: always
+#    expose:
+#      - 80
 
+#  ui-jte2:
+#    image: igr025/ui-jte-21-img:v0.1
+#    ##    restart: always
+#    ##    container_name: ui-jte-21-v01-cnr
+#    ##    ports:
+#    ##      - 80:80
+#    depends_on:
+#      - postgres
+#    expose:
+#      - 80
 
-#  oraclexe:
-#    image: 'container-registry.oracle.com/database/express:21.3.0-xe'
-#    environment:
-#      - 'ORACLE_DB=oracle_xe_db'
-#      - 'ORACLE_PWD=Password123'
-#      - 'ORACLE_USER=system'
-#    container_name: oracle-xe-cnr
+#  nginx:
+#    image: nginx:stable-alpine3.20-perl
+#    container_name: nginx-cnr
 #    ports:
-#      - '1521:1521'
+#      - 80:80
+#    volumes:
+#      - ./conf.d:/etc/nginx/conf.d
+#    depends_on:
+#      - ui-jte1
+#      - ui-jte2
+#      - ui-jte3

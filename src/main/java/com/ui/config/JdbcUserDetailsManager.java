@@ -29,13 +29,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.cache.NullUserCache;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.util.Assert;
-import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.provisioning.GroupManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 
-public class JdbcUserDetailsManager_ extends JdbcDaoImpl implements UserDetailsManager, GroupManager {
+public class JdbcUserDetailsManager extends JdbcDaoImpl implements UserDetailsManager, GroupManager {
 
-    public static final String DEF_CREATE_USER_SQL = "insert into users (username, password, enabled) values (?,?,?)";
+    public static final String DEF_CREATE_USER_SQL = "insert into users (username, email, password, enabled) values (?,?,?,?)";
     public static final String DEF_DELETE_USER_SQL = "delete from users where username = ?";
     public static final String DEF_UPDATE_USER_SQL = "update users set password = ?, enabled = ? where username = ?";
     public static final String DEF_INSERT_AUTHORITY_SQL = "insert into authorities (username, authority) values (?,?)";
@@ -57,7 +56,7 @@ public class JdbcUserDetailsManager_ extends JdbcDaoImpl implements UserDetailsM
     public static final String DEF_DELETE_GROUP_AUTHORITY_SQL = "delete from group_authorities where group_id = ? and authority = ?";
     protected final Log logger = LogFactory.getLog(this.getClass());
     private SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder.getContextHolderStrategy();
-    private String createUserSql = "insert into users (username, password, enabled) values (?,?,?)";
+    private String createUserSql = "insert into users (username, email, password, enabled) values (?,?,?,?)";
     private String deleteUserSql = "delete from users where username = ?";
     private String updateUserSql = "update users set password = ?, enabled = ? where username = ?";
     private String createAuthoritySql = "insert into authorities (username, authority) values (?,?)";
@@ -80,10 +79,10 @@ public class JdbcUserDetailsManager_ extends JdbcDaoImpl implements UserDetailsM
     private AuthenticationManager authenticationManager;
     private UserCache userCache = new NullUserCache();
 
-    public JdbcUserDetailsManager_() {
+    public JdbcUserDetailsManager() {
     }
 
-    public JdbcUserDetailsManager_(DataSource dataSource) {
+    public JdbcUserDetailsManager(DataSource dataSource) {
         this.setDataSource(dataSource);
     }
 

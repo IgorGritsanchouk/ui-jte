@@ -49,7 +49,7 @@ public class UserControllerVm extends ParentController{
     public String saveUserVm(HttpServletRequest request, @Valid User user, Model model){
         userRepository.save(user);
         CurrentPage currentPage=(CurrentPage)request.getSession().getAttribute(FINAL.CURRENT_PAGE);
-        currentPage.setMessage("User: "+ user.getFirstName()+ "  has been saved. ");
+        currentPage.setMessage("User: "+ user.getName()+ "  has been saved. ");
         model.addAttribute("currentPage", currentPage);
         logger.info("UserController. save-user-vm. "+ currentPage.getMessage());
         return "layout/master-vm";

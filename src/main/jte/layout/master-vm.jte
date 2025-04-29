@@ -40,6 +40,7 @@
                             <a href="/customer-form-vm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${messages.getMessage("customer.form.label")}</a>
                             <a href="/order-form-vm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${messages.getMessage("menu.order.label")}</a>
                             <a href="/ec-orders-vm" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">${messages.getMessage("menu.orders.label")}</a>
+                            <a href="/actuator" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Actuator</a>
 
                             <form action="/change-language" method="post">
                                 <select name="language" id="language" onchange="this.form.submit()">
@@ -104,6 +105,9 @@
             </a>
             <a href="/ec-orders-vm" class="text-white flex items-center py-2 px-2 hover:bg-gray-700 rounded">
                 <span class="mr-2">📭</span> <span x-show="open">${messages.getMessage("menu.orders.label")}</span>
+            </a>
+            <a href="/actuator" class="text-white flex items-center py-2 px-2 hover:bg-gray-700 rounded">
+                <span class="mr-2">🏁</span> <span x-show="open">Actuator</span>
             </a>
         </nav>
 
