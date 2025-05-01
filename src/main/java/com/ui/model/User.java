@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Email;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Objects;
@@ -14,8 +15,9 @@ import static org.springframework.boot.ansi.AnsiOutput.getEnabled;
 @Table("users")
 public class User {
     @Id
-    @NotBlank(message= "The first name should not be blank.")
-    private String name;
+    @NotBlank(message= "The user name should not be blank.")
+    @Column("username")
+    private String userName;
 
     //@Id
     @NotBlank(message= "The email should not be blank.")
@@ -33,7 +35,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", enabled='" + enabled + '\'' +
@@ -44,12 +46,12 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User user)) return false;
-        return Objects.equals(getName(), user.getName()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(getEmail(), user.getEmail()) && Objects.equals(isEnabled(), user.isEnabled());
+        return Objects.equals(getUserName(), user.getUserName()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(getEmail(), user.getEmail()) && Objects.equals(isEnabled(), user.isEnabled());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getEmail(), getPassword(), getEmail(), isEnabled());
+        return Objects.hash(getUserName(), getEmail(), getPassword(), getEmail(), isEnabled());
     }
 }
 

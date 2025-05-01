@@ -22,9 +22,14 @@ Java HotSpot(TM) 64-Bit Server VM Oracle GraalVM 21.0.5+9.1 (build 21.0.5+9-LTS-
 --- GRAAL native image related ----
 PS C:\APP_DEV\ui-jte> ./mvnw.cmd clean package
 PS C:\APP_DEV\ui-jte> ./mvnw.cmd -Pnative native:compile
-PS C:\APP_DEV\ui-jte> ./target/jte-production "-Dspring.profiles.active=prod"
-PS C:\APP_DEV\ui-jte> ./target/jte-production "-Dspring.profiles.active=prod"
+PS C:\APP_DEV\ui-jte> ./target/ui-jte "-Dspring.profiles.active=prod"
+PS C:\APP_DEV\ui-jte> ./target/ui-jte "-Dspring.profiles.active=prod"
+!!!!!!!!!!!
 PS C:\APP_DEV\ui-jte> ./mvnw.cmd -Pnative native:compile
+BASH
+./mvnw -Pnative native:compile -Dspring.profiles.active=prod
+WINDOWS
+PS C:\APP_DEV\ui-jte> ./mvnw.cmd -Pnative native:compile "-Dspring.profiles.active=prod"
 
 ---  to run executable file with prod settings  ---
 PS C:\APP_DEV\ui-jte> ./target/ui-jte "-Dspring.profiles.active=prod"
@@ -38,6 +43,9 @@ user:admin@admin.admin
 pwd: admin
 postgres  user: admin   password: password
 
+TEST with CURL -- in PowerShell
+PS C:\> curl.exe -X GET http://localhost/user-name?userName=user
+{"userName":"user","email":"user@gmail.com","password":"$2a$10$BgjnlVEUe8VYVF.YTSd4zuT7vAE8UxUUy0BZJxstTatdvamu.ooYm","enabled":true}
 
 Need to add tables and data in schema29032025.XXXsql  to the database
 -------   SP calls to oracle db  ---------

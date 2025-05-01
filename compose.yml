@@ -11,7 +11,7 @@ services:
       - '5432:5432'
 
   pgadmin:
-    image: dpage/pgadmin4:9.2
+    image: dpage/pgadmin4:9.3
     environment:
       - 'PGADMIN_DEFAULT_EMAIL=admin@admin.admin'
       - 'PGADMIN_DEFAULT_PASSWORD=admin'
@@ -24,12 +24,12 @@ services:
 
   # ----   needed with  Nginx for extra load  -----
 #  ui-jte1:
-#    image: igr025/ui-jte-21-img:v0.1
-#    restart: always
-#    build: .
-#    container_name: ui-jte-21-v01-cnr
-#    ports:
-#      - 80:80
+#   image: igr025/ui-jte-21-img:v0.1
+#   restart: always
+    ##    build: .
+    ##    container_name: ui-jte-21-v01-cnr
+    ##    ports:
+    ##      - 80:80
 #    depends_on:
 #      - postgres
 #    expose:
@@ -37,14 +37,26 @@ services:
 
 #  ui-jte2:
 #    image: igr025/ui-jte-21-img:v0.1
-#    ##    restart: always
-#    ##    container_name: ui-jte-21-v01-cnr
-#    ##    ports:
-#    ##      - 80:80
+#    restart: always
+    ##    container_name: ui-jte-21-v01-cnr
+    ##    ports:
+    ##      - 80:80
 #    depends_on:
 #      - postgres
 #    expose:
 #      - 80
+
+#ui-jte3:
+#    image: igr025/ui-jte-21-img:v0.1
+#    restart: always
+    ##    container_name: ui-jte-21-v01-cnr
+    ##    ports:
+    ##      - 80:80
+#    depends_on:
+#      - postgres
+#    expose:
+#      - 80
+
 
 #  nginx:
 #    image: nginx:stable-alpine3.20-perl

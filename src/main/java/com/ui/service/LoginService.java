@@ -6,8 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
-@Service
+@RestController
 public class LoginService {
 
     private final Logger logger = LoggerFactory.getLogger(LoginService.class);
@@ -23,15 +24,10 @@ public class LoginService {
 
     private JdbcTemplate jdbcTemplate;
 
-    public User save(User user){
 
-        User saved= this.userRepository.save(user);
-        logger.info("Saved new user ok: "+ saved.getName()+ "   "+ saved.getEmail());
-        return saved;
+    public boolean login(String username, String password){
+
+        return true;
     }
-
-//    public void login(){
-//
-//    }
 
 }
