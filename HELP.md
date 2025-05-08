@@ -98,7 +98,6 @@ PS C:\APP_DEV\ui-jte> docker tag ui-jte-21-img:v0.1 igr025/ui-jte-21-img:v0.1
 PS C:\APP_DEV\ui-jte> docker push igr025/ui-jte-21-img:v0.1
 b39f5adcc6d9: Pushed
 
-
 -- running 2 containers with nginx proxy and API gatway setup --
 PS C:\APP_DEV\ui-jte> docker compose up --scale ui-jte=2
 
@@ -144,7 +143,6 @@ PS C:\APP_DEV\java-template-engine\src\main\frontend> npm run watch
 PS C:\APP_DEV\ui-jte> docker build -f Dockerfile -t ui-jte-21-img:v0.1 .
 PS C:\APP_DEV\ui-jte> docker run -p 80:80 ui-jte-21-img:v01
 
-
 // docker compose logs -f ui-jte1    // to check logs of first server
 // docker compose logs -f ui-jte2    // docker rm -f   //stops one of the containers
 // watch -n 1 curl -s localhost:80    // not yet tried
@@ -157,7 +155,20 @@ docker compose up   now, as 3 instances are specified in compose.yml
 docker pull nginx:stable-alpine3.20-perl
 --  nginx related:   https://www.youtube.com/watch?v=9aOpRhm33oM
 
+####  MONGO DB with DOCKER ####
+image: mongo:8.0         ---- 3.9 gig
+docker compose logs --tail 100 -f          ----- linux
+docker compose logs -f
+Clean Up Old Containers/Volumes (if configs changed)
+Docker may be using cached volumes with old credentials.
+docker-compose down -v
+docker-compose up --build
+
+http://localhost/api/v1/products     -- rest api for mongo
+
 ### Reference Documentation
+http://127.0.0.1:8081     url to connect to ui
+
 For further reference, please consider the following sections:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
@@ -207,74 +218,3 @@ If you manually switch to a different parent and actually want the inheritance, 
 ========   Stored Proc and Func  examples which could be called from DAO.java class ====
 --------  worked ok. just an investigation  ----------
 http://localhost:81/employee-orders?employeeId=1
---  call to get_employee_orders() works fine. Can be tested by url above. OK
-CREATE OR REPLACE FUNCTION get_employee_orders(empid INT)
-RETURNS TABLE(
-employee_id INT,
-first_name VARCHAR,
-last_name VARCHAR,
-mobile_phone BIGINT,
-order_id INT,
-order_date TIMESTAMP,
-order_status VARCHAR,
-tracking_number VARCHAR,
-customer_id INT,
-company_name VARCHAR,
-phone VARCHAR
-) AS
-$$
-BEGIN
-RETURN QUERY
-SELECT e.employee_id, e.first_name, e.last_name, e.mobile_phone, o.order_id, o.order_date, o.order_status, o.tracking_number, c.customer_id, c.company_name, c.phone
-FROM employees e
-INNER JOIN orders o ON o.employee_id = e.employee_id
-INNER JOIN customers c ON o.customer_id = c.customer_id
-WHERE e.employee_id = empid;
-END;
-$$ LANGUAGE plpgsql;
-
-drop function get_employee_orders(empid integer);
-SELECT * FROM get_employee_orders(1);
-
-
-CREATE OR REPLACE FUNCTION GET_USERS_BY_COUNTRY(p_country_name VARCHAR(50))
-RETURNS TABLE (id INT, first_name VARCHAR, last_name VARCHAR, email VARCHAR, country VARCHAR,
-street_address VARCHAR, city VARCHAR, region VARCHAR, postal_code VARCHAR) AS $$
-DECLARE
-user_count INT;
-BEGIN
--- Check if country exists --
-SELECT COUNT(*) INTO user_count
-FROM users
-WHERE users.country = p_country_name; -- Explicitly reference table column
-
-    IF user_count > 0 THEN
-        -- If country exists, return the users
-        RETURN QUERY
-        SELECT u.id, u.first_name, u.last_name, u.email, u.country,
-               u.street_address, u.city, u.region, u.postal_code
-        FROM users u
-        WHERE u.country = p_country_name; -- Explicitly reference table column
-    ELSE
-        -- If the country does not exist, return an empty result set
-        RETURN;
-    END IF;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE OR REPLACE PROCEDURE add_user(
-p_first_name VARCHAR,
-p_last_name VARCHAR,
-p_email VARCHAR,
-p_country VARCHAR,
-p_street_address VARCHAR,
-p_city VARCHAR,
-p_region VARCHAR,
-p_postal_code VARCHAR
-)
-AS $$
-BEGIN
-INSERT INTO users (first_name, last_name, email, country, street_address, city, region, postal_code)
-VALUES (p_first_name, p_last_name, p_email, p_country, p_street_address, p_city, p_region, p_postal_code);
-END;
-$$ LANGUAGE plpgsql;

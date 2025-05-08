@@ -1,0 +1,71 @@
+## for local development with debug. run to start db and populate data using script
+services:
+  postgres:
+    image: 'postgres:17.2'
+    environment:
+      - 'POSTGRES_DB=postgres_db'
+      - 'POSTGRES_PASSWORD=password'
+      - 'POSTGRES_USER=admin'
+    container_name: postgres-db-cnr
+    ports:
+      - '5432:5432'
+
+  pgadmin:
+    image: dpage/pgadmin4:9.3
+    environment:
+      - 'PGADMIN_DEFAULT_EMAIL=admin@admin.admin'
+      - 'PGADMIN_DEFAULT_PASSWORD=admin'
+    restart: always
+    container_name: pgadmin-cnr
+    ports:
+      - 8081:80
+    depends_on:
+      - postgres
+
+  # ----   needed with  Nginx for extra load  -----
+#  ui-jte1:
+#   image: igr025/ui-jte-21-img:v0.1
+#   restart: always
+    ##    build: .
+    ##    container_name: ui-jte-21-v01-cnr
+    ##    ports:
+    ##      - 80:80
+#    depends_on:
+#      - postgres
+#    expose:
+#      - 80
+
+#  ui-jte2:
+#    image: igr025/ui-jte-21-img:v0.1
+#    restart: always
+    ##    container_name: ui-jte-21-v01-cnr
+    ##    ports:
+    ##      - 80:80
+#    depends_on:
+#      - postgres
+#    expose:
+#      - 80
+
+#ui-jte3:
+#    image: igr025/ui-jte-21-img:v0.1
+#    restart: always
+    ##    container_name: ui-jte-21-v01-cnr
+    ##    ports:
+    ##      - 80:80
+#    depends_on:
+#      - postgres
+#    expose:
+#      - 80
+
+
+#  nginx:
+#    image: nginx:stable-alpine3.20-perl
+#    container_name: nginx-cnr
+#    ports:
+#      - 80:80
+#    volumes:
+#      - ./conf.d:/etc/nginx/conf.d
+#    depends_on:
+#      - ui-jte1
+#      - ui-jte2
+#      - ui-jte3

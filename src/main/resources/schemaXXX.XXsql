@@ -203,7 +203,6 @@ VALUES
 ('multiuser', 'multiuser@gmail.com','$2a$10$cjyS4KcZlHZCC3Y0TBOqF.Rd6yrzXuLLisgW1pfYfNKQH7HbA2HSy', true),
 ('IG01', 'igor@gmail.com', '$2a$10$Kb.e6F.wveckBV9tka/EXeF40zJIkJzDkz1XXZIgRxSwocWMNGuI.', true);
 
-
 create table authorities (
     username citext NOT NULL CHECK (char_length(username) <= 50),
     authority citext NOT NULL CHECK (char_length(authority) <= 50),

@@ -1,0 +1,3 @@
+{"_id":{"$oid":"681a25e0b41f49dfae3dd117"},"name":"Radiator","description":"Stationary heating device","price":149.99,"inStock":true,"image":"images/radiator.jpg"}
+{"_id":{"$oid":"681a2605b41f49dfae3dd119"},"name":"Book","description":"Alice in wonderland","price":9.99,"inStock":true,"image":"images/alice_book.jpg"}
+{"_id":{"$oid":"681a26beb41f49dfae3dd11b"},"name":" T_shirt","description":"Summer clothes","price":11.99,"inStock":true,"image":"images/tshirt.jpg"}
