@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -28,6 +30,12 @@ public class UserService {
 
     private UserRepository userRepository;
     private JdbcTemplate jdbcTemplate;
+
+    public String getGreeting(String id){
+
+        Optional<User> user= userRepository.findById(id);
+        return "Hello, " + user.get().getUserName() + "!";
+    }
 
     @Caching(put = {
             @CachePut(cacheNames = "cacheUsers", key = "#user.userName"),

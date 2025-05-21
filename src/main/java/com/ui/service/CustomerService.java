@@ -24,6 +24,10 @@ public class CustomerService {
 
     private JdbcTemplate jdbcTemplate;
 
+    public String greet(String name){
+        return "Hello, " + name + "!";
+    }
+
     public Optional<Customer> findForId(Long id){
         logger.info("Find Customer for id: "+ id);
         return customerRepository.findById(id);
